@@ -1,5 +1,6 @@
 import React from "react";
-export const ProductCard = ({ product }) => {
+import { checkItem } from "../utils/checkItem";
+export const ProductCard = ({ product, products }) => {
 	const {
 		id,
 		name,
@@ -25,8 +26,11 @@ export const ProductCard = ({ product }) => {
 				<p>
 					{material} - {brand}
 				</p>
-				{inStock && <p>Instock</p>}
+				<p className={inStock && "data-hidden"}>Instock</p>
 				<p>{rating}</p>
+				<button className="btn btn-solid-primary">
+					{checkItem(products, id) ? "Add To Cart" : "Go To Cart"}
+				</button>
 			</div>
 		</>
 	);

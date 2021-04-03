@@ -7,7 +7,11 @@ export const ProductListing = () => {
 			<h1>Product Listing</h1>
 			<div className="product-container">
 				{productData.map((product) => (
-					<ProductCard product={product} key={product.id} />
+					<ProductCard
+						product={product}
+						key={product.id}
+						products={productData}
+					/>
 				))}
 			</div>
 		</>
