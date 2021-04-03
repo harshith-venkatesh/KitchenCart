@@ -12,9 +12,9 @@ export default function App() {
 				<NavBar route={route} setRoute={setRoute} />
 			</div>
 			<div className="container">
-				{route === "Home" && <Home />}
-				{route === "ProductListing" && <ProductListing />}
-				{route === "WishList" && <WishList />}
+				{route === "Home" && <Home setRoute={setRoute} />}
+				{route === "ProductListing" && <ProductListing setRoute={setRoute} />}
+				{route === "WishList" && <WishList setRoute={setRoute} />}
 				{route === "Cart" && <Cart />}
 			</div>
 		</>

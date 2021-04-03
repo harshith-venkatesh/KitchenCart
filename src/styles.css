@@ -14,25 +14,28 @@ body {
 	display: grid;
 	margin: 0 auto;
 	grid-template-columns: repeat(4, 1fr);
-	grid-gap: 2rem;
+	grid-gap: 1rem;
 }
 .product-card {
 	text-align: left;
 	color: #4b5563;
-	color: var(--grey-600);
+	background: #eff6ff;
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-direction: column;
 	flex-direction: column;
 	width: auto;
 	max-width: 100%;
-	min-width: 200px;
+	min-width: 180px;
+	border-radius: 1rem;
 }
 
 .image-product-card {
 	padding: 0.1rem;
 	margin-bottom: 0.4rem;
 	height: 10rem;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
 }
 .main-container {
 	width: 80%;

@@ -3,13 +3,16 @@ import ReactDOM from "react-dom";
 
 import App from "./App";
 import { DataProvider } from "./context/dataContext";
+import { ProductProvider } from "./context/productContext";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
 	<StrictMode>
-		<DataProvider>
-			<App />
-		</DataProvider>
+		<ProductProvider>
+			<DataProvider>
+				<App />
+			</DataProvider>
+		</ProductProvider>
 	</StrictMode>,
 	rootElement
 );
