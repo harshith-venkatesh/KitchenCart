@@ -71,7 +71,9 @@ export const ProductListing = ({ setRoute }) => {
 							});
 						}}
 					/>
-					<label htmlFor={PRICE_LOW_TO_HIGH}>Low To High</label>
+					<label htmlFor={PRICE_LOW_TO_HIGH} className="pr-1">
+						Low To High
+					</label>
 				</fieldset>
 			</div>
 			<div className="mb-1">

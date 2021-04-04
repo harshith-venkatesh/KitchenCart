@@ -39,21 +39,22 @@ export const Cart = ({ setRoute }) => {
 						<CardBody {...rest} />
 						<div>
 							<button
-								className="btn btn-icon icon-transparent mb-1 mt-1"
-								onClick={() => {
-									dataDispatch({ type: INC_QTY, id });
-								}}
-							>
-								<i className="fa fa-plus"></i>
-							</button>
-							<span className="ml-sm mr-sm">{qty}</span>
-							<button
-								className="btn btn-icon icon-transparent mb-1 mt-1"
+								className="btn "
 								onClick={() => {
 									dataDispatch({ type: DEC_QTY, id });
 								}}
 							>
 								<i className="fa fa-minus"></i>
+							</button>
+
+							<span className="">{qty}</span>
+							<button
+								className="btn "
+								onClick={() => {
+									dataDispatch({ type: INC_QTY, id });
+								}}
+							>
+								<i className="fa fa-plus"></i>
 							</button>
 						</div>
 					</Card>
