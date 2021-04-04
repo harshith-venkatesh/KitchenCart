@@ -21,7 +21,7 @@ export const NavBar = ({ route, setRoute }) => {
 					</div>
 				</div>
 
-				<div className="flex">
+				<div className="icons-container">
 					<div className="pr-0.5">
 						<div
 							className="badge-icon-container "

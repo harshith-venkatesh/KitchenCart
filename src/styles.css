@@ -55,6 +55,11 @@ body {
 	visibility: hidden;
 }
 
+.icons-container {
+	display: flex;
+	margin-top: 1rem;
+}
+
 .wishlist {
 	font-size: 1.1rem;
 	padding: 0.4rem;
