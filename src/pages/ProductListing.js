@@ -1,7 +1,4 @@
-import { productData } from "../constants/productData";
-import React from "react";
-import { ProductCard } from "../components/ProductCard";
-import { useData } from "../context/dataContext";
+import React, { useState } from "react";
 import { useProducts } from "../context/productContext";
 import {
 	INCLUDE_OUT_OF_STOCK,
@@ -10,12 +7,10 @@ import {
 	PRICE_LOW_TO_HIGH,
 	SORT_BY_PRICE
 } from "../reducers/productReducer";
-import { checkItem } from "../utils/checkItem";
-import {
-	ADD_CARTLIST_ITEM,
-	ADD_WISHLIST_ITEM,
-	REMOVE_WISHLIST_ITEM
-} from "../reducers/dataReducer";
+
+import { Card, CardBody, CardFooter } from "../components/Card/Card";
+import { AddToCartButton, WishListButton } from "../components/Button/Button";
+import Slider from "react-rangeslider";
 
 const tranformProducts = (state) => {
 	const sortCheck = state[SORT_BY_PRICE];
@@ -41,132 +36,80 @@ const tranformProducts = (state) => {
 };
 
 export const ProductListing = ({ setRoute }) => {
-	const { cartList, wishList, dataDispatch } = useData();
 	const { productsState, productsDispatch } = useProducts();
-	console.log({ wishList });
+
 	return (
 		<>
 			<h1>Product Listing</h1>
 			<div className="mt-1">
-				Price:{" "}
-				<input
-					checked={productsState[SORT_BY_PRICE] === PRICE_HIGH_TO_LOW}
-					type="radio"
-					name={SORT_BY_PRICE}
-					id={PRICE_HIGH_TO_LOW}
-					onChange={() => {
-						productsDispatch({ type: SORT_BY_PRICE, value: PRICE_HIGH_TO_LOW });
-					}}
-				/>
-				<label htmlFor={PRICE_HIGH_TO_LOW}>HIGH TO LOW</label>
-				<input
-					checked={productsState[SORT_BY_PRICE] === PRICE_LOW_TO_HIGH}
-					type="radio"
-					name={SORT_BY_PRICE}
-					id={PRICE_LOW_TO_HIGH}
-					onChange={() => {
-						productsDispatch({ type: SORT_BY_PRICE, value: PRICE_LOW_TO_HIGH });
-					}}
-				/>
-				<label htmlFor={PRICE_LOW_TO_HIGH}>LOW TO HIGH</label>
+				<fieldset className="p-1">
+					<legend>Price :</legend>
+					<label htmlFor={PRICE_HIGH_TO_LOW} className="pr-2">
+						<input
+							checked={productsState[SORT_BY_PRICE] === PRICE_HIGH_TO_LOW}
+							type="radio"
+							name={SORT_BY_PRICE}
+							id={PRICE_HIGH_TO_LOW}
+							onChange={() => {
+								productsDispatch({
+									type: SORT_BY_PRICE,
+									value: PRICE_HIGH_TO_LOW
+								});
+							}}
+						/>
+						High To Low
+					</label>
+					<input
+						checked={productsState[SORT_BY_PRICE] === PRICE_LOW_TO_HIGH}
+						type="radio"
+						name={SORT_BY_PRICE}
+						id={PRICE_LOW_TO_HIGH}
+						onChange={() => {
+							productsDispatch({
+								type: SORT_BY_PRICE,
+								value: PRICE_LOW_TO_HIGH
+							});
+						}}
+					/>
+					<label htmlFor={PRICE_LOW_TO_HIGH}>Low To High</label>
+				</fieldset>
 			</div>
 			<div className="mb-1">
-				<input
-					type="checkbox"
-					checked={productsState[INCLUDE_OUT_OF_STOCK]}
-					id={INCLUDE_OUT_OF_STOCK}
-					onChange={() => productsDispatch({ type: INCLUDE_OUT_OF_STOCK })}
-				/>
-				<label htmlFor={INCLUDE_OUT_OF_STOCK}>Include Out of Stock</label>
-				<input
-					type="checkbox"
-					checked={productsState[ONLY_FAST_DELIVERY]}
-					id={ONLY_FAST_DELIVERY}
-					onChange={() => productsDispatch({ type: ONLY_FAST_DELIVERY })}
-				/>
-				<label htmlFor={ONLY_FAST_DELIVERY}>Include Fast Delivery</label>
+				<fieldset className="p-1">
+					<legend>Filters</legend>
+					<label htmlFor={INCLUDE_OUT_OF_STOCK} className="pr-1">
+						<input
+							type="checkbox"
+							checked={productsState[INCLUDE_OUT_OF_STOCK]}
+							id={INCLUDE_OUT_OF_STOCK}
+							onChange={() => productsDispatch({ type: INCLUDE_OUT_OF_STOCK })}
+						/>
+						Include Out of Stock
+					</label>
+					<input
+						type="checkbox"
+						checked={productsState[ONLY_FAST_DELIVERY]}
+						id={ONLY_FAST_DELIVERY}
+						onChange={() => productsDispatch({ type: ONLY_FAST_DELIVERY })}
+					/>
+					<label htmlFor={ONLY_FAST_DELIVERY}>Include Fast Delivery</label>
+				</fieldset>
 			</div>
 			<div className="product-container">
-				{tranformProducts(productsState).map(
-					({
-						id,
-						name,
-						image,
-						price,
-						material,
-						brand,
-						inStock,
-						fastDelivery,
-						rating,
-						offers,
-						idealFor,
-						level,
-						color
-					}) => (
-						<div className="product-card" key={id}>
-							<img src={image} alt={name} className="image-product-card" />
-							<button
-								className={
-									checkItem(wishList, id)
-										? "wishlist red btn-close"
-										: "wishlist gray btn-close"
-								}
-								onClick={() => {
-									checkItem(wishList, id)
-										? dataDispatch({ type: REMOVE_WISHLIST_ITEM, id })
-										: dataDispatch({
-												type: ADD_WISHLIST_ITEM,
-												item: {
-													id,
-													name,
-													price,
-													inStock,
-													level,
-													fastDelivery,
-													image
-												}
-										  });
-								}}
-							>
-								<i className="fa fa-heart"></i>
-							</button>
-							<h4>{name}</h4>
-							<p>Rs. {price}</p>
-							<p>
-								{material} - {brand}
-							</p>
-							<div>{level}</div>
-							{inStock ? <div>In Stock</div> : <div> Out of Stock</div>}
-							{fastDelivery ? (
-								<div>Fast Delivery</div>
-							) : (
-								<div>Delivery in 2 days</div>
-							)}
-							<button
-								className="btn btn-solid-primary"
-								onClick={() => {
-									checkItem(cartList, id)
-										? setRoute("Cart")
-										: dataDispatch({
-												type: ADD_CARTLIST_ITEM,
-												item: {
-													id,
-													name,
-													price,
-													inStock,
-													level,
-													fastDelivery,
-													image,
-													qty: 1
-												}
-										  });
-								}}
-							>
-								{checkItem(cartList, id) ? "Go To Cart" : "Add To Cart"}
-							</button>
-						</div>
-					)
-				)}
+				{tranformProducts(productsState).map(({ id, ...rest }) => (
+					<Card key={id}>
+						<WishListButton id={id} {...rest} />
+						<CardBody {...rest} />
+						<CardFooter>
+							<AddToCartButton
+								setRoute={setRoute}
+								renderPage={"ProductListing"}
+								id={id}
+								{...rest}
+							/>
+						</CardFooter>
+					</Card>
+				))}
 			</div>
 		</>
 	);
