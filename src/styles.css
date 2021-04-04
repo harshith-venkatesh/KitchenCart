@@ -71,7 +71,9 @@ body {
 .red {
 	color: red;
 }
-
+.pr-half {
+	padding: 0 0.5rem;
+}
 .gray {
 	color: gray;
 }

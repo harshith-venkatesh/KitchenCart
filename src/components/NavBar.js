@@ -22,7 +22,7 @@ export const NavBar = ({ route, setRoute }) => {
 				</div>
 
 				<div className="icons-container">
-					<div className="pr-0.5">
+					<div className="pr-half">
 						<div
 							className="badge-icon-container "
 							onClick={() => setRoute("ProductListing")}
@@ -33,7 +33,7 @@ export const NavBar = ({ route, setRoute }) => {
 							</p> */}
 						</div>
 					</div>
-					<div className="pr-0.5">
+					<div className="pr-half">
 						<div
 							className="badge-icon-container "
 							onClick={() => setRoute("Cart")}
