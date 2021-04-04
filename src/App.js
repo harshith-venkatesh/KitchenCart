@@ -16,7 +16,7 @@ export default function App() {
 				{route === "Home" && <Home setRoute={setRoute} />}
 				{route === "ProductListing" && <ProductListing setRoute={setRoute} />}
 				{route === "WishList" && <WishList setRoute={setRoute} />}
-				{route === "Cart" && <Cart />}
+				{route === "Cart" && <Cart setRoute={setRoute} />}
 			</div>
 		</>
 	);

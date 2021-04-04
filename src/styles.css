@@ -33,6 +33,9 @@ body {
 .card-body {
 	flex-grow: 1;
 }
+.mt-1 {
+	margin-top: 1rem;
+}
 .product-card-badge {
 	position: absolute;
 	right: 0;

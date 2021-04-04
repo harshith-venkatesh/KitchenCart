@@ -40,7 +40,7 @@ export const ProductListing = ({ setRoute }) => {
 
 	return (
 		<>
-			<h1>Product Listing</h1>
+			<h2>Product Listing</h2>
 			<div className="mt-1">
 				<fieldset className="p-1">
 					<legend>Price :</legend>
@@ -95,6 +95,7 @@ export const ProductListing = ({ setRoute }) => {
 					<label htmlFor={ONLY_FAST_DELIVERY}>Include Fast Delivery</label>
 				</fieldset>
 			</div>
+			<div className="mt-1"></div>
 			<div className="product-container">
 				{tranformProducts(productsState).map(({ id, ...rest }) => (
 					<Card key={id}>

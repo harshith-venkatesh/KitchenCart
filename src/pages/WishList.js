@@ -9,8 +9,20 @@ export const WishList = ({ setRoute }) => {
 
 	return (
 		<React.Fragment>
-			<h2>WishList</h2>
+			<h2>My WishList</h2>
+
 			<div className="product-container">
+				{wishList.length === 0 && (
+					<div>
+						WishList is Empty
+						<button
+							className="btn btn-solid-primary"
+							onClick={() => setRoute("ProductListing")}
+						>
+							Continue Shopping
+						</button>
+					</div>
+				)}
 				{wishList.map(({ id, ...rest }) => (
 					<Card key={id}>
 						<CloseButton

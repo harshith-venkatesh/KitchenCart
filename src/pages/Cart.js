@@ -11,13 +11,24 @@ import {
 const getTotalPrice = (items) => {
 	return items.reduce((amount, { price, qty }) => amount + price * qty, 0);
 };
-export const Cart = () => {
+export const Cart = ({ setRoute }) => {
 	const { cartList, dataDispatch } = useData();
 	return (
 		<React.Fragment>
-			<h2>Cart</h2>
-			<h5>Total: {getTotalPrice(cartList)}</h5>
+			<h2>My Cart</h2>
+			<h4>Total: Rs. {getTotalPrice(cartList)}</h4>
 			<div className="product-container">
+				{cartList.length === 0 && (
+					<div>
+						Cart is Empty
+						<button
+							className="btn btn-solid-primary"
+							onClick={() => setRoute("ProductListing")}
+						>
+							Continue Shopping
+						</button>
+					</div>
+				)}
 				{cartList.map(({ id, qty, ...rest }) => (
 					<Card key={id}>
 						<CloseButton
