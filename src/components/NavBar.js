@@ -21,8 +21,8 @@ export const NavBar = ({ route, setRoute }) => {
 					</div>
 				</div>
 
-				<div className="flex pr-1">
-					<div className="pr-1">
+				<div className="flex">
+					<div className="pr-0.5">
 						<div
 							className="badge-icon-container "
 							onClick={() => setRoute("ProductListing")}
@@ -33,7 +33,7 @@ export const NavBar = ({ route, setRoute }) => {
 							</p> */}
 						</div>
 					</div>
-					<div className="pr-1">
+					<div className="pr-0.5">
 						<div
 							className="badge-icon-container "
 							onClick={() => setRoute("Cart")}
@@ -49,17 +49,19 @@ export const NavBar = ({ route, setRoute }) => {
 							{/* <p style={{ fontSize: "0.6rem", textAlign: "center" }}>Cart</p> */}
 						</div>
 					</div>
-					<div
-						className="badge-icon-container"
-						onClick={() => setRoute("WishList")}
-					>
-						<i className="fa fa-heart fa-2x"></i>
-						{wishList.length > 0 ? (
-							<span className="status-badge status-badge-number">
-								{wishList.length}
-							</span>
-						) : null}
-						{/* <p style={{ fontSize: "0.6rem", textAlign: "center" }}>WishList</p> */}
+					<div className="pr-1">
+						<div
+							className="badge-icon-container"
+							onClick={() => setRoute("WishList")}
+						>
+							<i className="fa fa-heart fa-2x"></i>
+							{wishList.length > 0 ? (
+								<span className="status-badge status-badge-number">
+									{wishList.length}
+								</span>
+							) : null}
+							{/* <p style={{ fontSize: "0.6rem", textAlign: "center" }}>WishList</p> */}
+						</div>
 					</div>
 				</div>
 			</nav>
