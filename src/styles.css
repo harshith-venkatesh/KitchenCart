@@ -92,4 +92,8 @@ body {
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 0.5rem;
 	}
+	.image-product-card {
+		padding: 0.1rem;
+		margin-bottom: 0.4rem;
+	}
 }
