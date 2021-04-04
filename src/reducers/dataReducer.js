@@ -38,7 +38,7 @@ export const dataReducer = (state, { type, id, item }) => {
 		case REMOVE_CARTLIST_ITEM:
 			return {
 				...state,
-				cartList: cartList.filter((item) => item.id === id)
+				cartList: cartList.filter((item) => item.id !== id)
 			};
 
 		case ADD_WISHLIST_ITEM:
@@ -49,7 +49,7 @@ export const dataReducer = (state, { type, id, item }) => {
 		case REMOVE_WISHLIST_ITEM:
 			return {
 				...state,
-				wishList: wishList.filter((item) => item.id === id)
+				wishList: wishList.filter((item) => item.id !== id)
 			};
 		default:
 			return state;

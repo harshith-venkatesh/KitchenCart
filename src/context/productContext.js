@@ -10,7 +10,7 @@ const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(productReducer, {
-		productData,
+		products: productData,
 		[INCLUDE_OUT_OF_STOCK]: true,
 		[ONLY_FAST_DELIVERY]: false
 	});

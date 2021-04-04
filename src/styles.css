@@ -46,6 +46,21 @@ body {
 	visibility: hidden;
 }
 
+.wishlist {
+	font-size: 1.1rem;
+	padding: 0.4rem;
+	background: none;
+	cursor: pointer;
+	outline: inherit;
+	border: none;
+}
+.red {
+	color: red;
+}
+
+.gray {
+	color: gray;
+}
 @media (max-width: 600px) {
 	.product-container {
 		display: grid;

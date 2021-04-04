@@ -1,6 +1,8 @@
 export const SORT_BY_PRICE = "sortByPrice";
 export const INCLUDE_OUT_OF_STOCK = "ïncludeOutOfStock";
 export const ONLY_FAST_DELIVERY = "onlyFastDelivery";
+export const PRICE_HIGH_TO_LOW = "PRICE_HIGH_TO_LOW";
+export const PRICE_LOW_TO_HIGH = "PRICE_LOW_TO_HIGH";
 export const productReducer = (state, { type, value }) => {
 	switch (type) {
 		case SORT_BY_PRICE:
