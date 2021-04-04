@@ -14,7 +14,7 @@ export const CardBody = ({
 	offers,
 	idealFor
 }) => (
-	<>
+	<div className="card-body">
 		<img src={image} alt={name} className="image-product-card" />
 		<div className="p-1">
 			<h4>{name}</h4>
@@ -25,5 +25,5 @@ export const CardBody = ({
 			{inStock ? <div>In Stock</div> : <div> Out of Stock</div>}
 			{fastDelivery ? <div>Fast Delivery</div> : <div>Delivery in 2 days</div>}
 		</div>
-	</>
+	</div>
 );

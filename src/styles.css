@@ -29,6 +29,10 @@ body {
 	min-width: 8rem;
 	position: relative;
 }
+
+.card-body {
+	flex-grow: 1;
+}
 .product-card-badge {
 	position: absolute;
 	right: 0;
