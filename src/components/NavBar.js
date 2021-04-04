@@ -17,7 +17,7 @@ export const NavBar = ({ route, setRoute }) => {
 						alt="Shankha"
 					/>
 					<div className="header-title">
-						<span className="header-title-name">Kitchen Cart</span>
+						<span>Kitchen Cart</span>
 					</div>
 				</div>
 
@@ -28,6 +28,9 @@ export const NavBar = ({ route, setRoute }) => {
 							onClick={() => setRoute("ProductListing")}
 						>
 							<i className="fa fa-home fa-2x"></i>
+							{/* <p style={{ fontSize: "0.6rem", textAlign: "center" }}>
+								Products
+							</p> */}
 						</div>
 					</div>
 					<div className="pr-1">
@@ -35,12 +38,15 @@ export const NavBar = ({ route, setRoute }) => {
 							className="badge-icon-container "
 							onClick={() => setRoute("Cart")}
 						>
-							<i className="fa fa-shopping-cart  fa-2x"></i>
-							{cartList.length > 0 ? (
-								<span className="status-badge status-badge-number">
-									{cartList.length}
-								</span>
-							) : null}
+							<>
+								<i className="fa fa-shopping-cart  fa-2x"></i>
+								{cartList.length > 0 ? (
+									<span className="status-badge status-badge-number">
+										{cartList.length}
+									</span>
+								) : null}
+							</>
+							{/* <p style={{ fontSize: "0.6rem", textAlign: "center" }}>Cart</p> */}
 						</div>
 					</div>
 					<div
@@ -53,6 +59,7 @@ export const NavBar = ({ route, setRoute }) => {
 								{wishList.length}
 							</span>
 						) : null}
+						{/* <p style={{ fontSize: "0.6rem", textAlign: "center" }}>WishList</p> */}
 					</div>
 				</div>
 			</nav>

@@ -7,9 +7,9 @@ import {
 import { checkItem } from "../../utils/checkItem";
 
 export const CloseButton = ({ onClick }) => (
-	<button className="btn btn-solid-primary" onClick={onClick}>
+	<div className="product-card-badge" onClick={onClick}>
 		<i className="fa fa-times"></i>
-	</button>
+	</div>
 );
 
 export const AddToCartButton = ({ setRoute, renderPage, id, ...rest }) => {
@@ -33,8 +33,8 @@ export const AddToCartButton = ({ setRoute, renderPage, id, ...rest }) => {
 
 const setWishListButtonClass = (wishList, id) => {
 	return checkItem(wishList, id)
-		? "wishlist red btn-close"
-		: "wishlist gray btn-close";
+		? "product-card-badge red btn-close"
+		: "product-card-badge gray btn-close";
 };
 export const WishListButton = ({ id, ...rest }) => {
 	const { wishList, dataDispatch } = useData();
@@ -51,12 +51,9 @@ export const WishListButton = ({ id, ...rest }) => {
 	};
 
 	return (
-		<button
-			className={setWishListButtonClass(wishList, id)}
-			onClick={handleClick}
-		>
+		<div className={setWishListButtonClass(wishList, id)} onClick={handleClick}>
 			<i className="fa fa-heart"></i>
-		</button>
+		</div>
 	);
 };
 //operatin button

@@ -27,15 +27,24 @@ body {
 	width: auto;
 	max-width: 100%;
 	min-width: 8rem;
-	border-radius: 1rem;
+	position: relative;
 }
-
+.product-card-badge {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0.5rem;
+	background: white;
+	/* border-radius: 50%; */
+}
+.product-card-badge:hover {
+	background: white;
+	color: red;
+}
 .image-product-card {
 	padding: 0.1rem;
 	margin-bottom: 0.4rem;
 	height: 10rem;
-	border-top-left-radius: 1rem;
-	border-top-right-radius: 1rem;
 }
 .main-container {
 	width: 80%;
@@ -66,6 +75,6 @@ body {
 		display: grid;
 		margin: 0 auto;
 		grid-template-columns: repeat(2, 1fr);
-		grid-gap: 2rem;
+		grid-gap: 0.5rem;
 	}
 }
