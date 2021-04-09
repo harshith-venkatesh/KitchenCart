@@ -12,7 +12,8 @@ export const ProductProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(productReducer, {
 		products: productData,
 		[INCLUDE_OUT_OF_STOCK]: false,
-		[ONLY_FAST_DELIVERY]: false
+		[ONLY_FAST_DELIVERY]: false,
+		priceRange: 1000
 	});
 
 	return (

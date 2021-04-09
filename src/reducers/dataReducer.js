@@ -3,13 +3,13 @@ export const initialData = {
 	wishList: []
 };
 
-export const ADD_CARTLIST_ITEM = "addCartItem";
-export const INC_QTY = "incQty";
-export const DEC_QTY = "decQty";
+export const ADD_CARTLIST_ITEM = "ADD_CARTLIST_ITEM";
+export const INC_QTY = "INC_QTY";
+export const DEC_QTY = "DEC_QTY";
 
-export const REMOVE_CARTLIST_ITEM = "removeCartlistItem";
-export const ADD_WISHLIST_ITEM = "addWishlistItem";
-export const REMOVE_WISHLIST_ITEM = "removeWishlistItem";
+export const REMOVE_CARTLIST_ITEM = "REMOVE_CARTLIST_ITEM";
+export const ADD_WISHLIST_ITEM = "ADD_WISHLIST_ITEM";
+export const REMOVE_WISHLIST_ITEM = "REMOVE_WISHLIST_ITEM";
 
 export const dataReducer = (state, { type, id, item }) => {
 	const { cartList, wishList } = state;
