@@ -30,39 +30,39 @@ export const Filter = () => {
 						/>
 						High To Low
 					</label>
-					<input
-						checked={productsState[SORT_BY_PRICE] === PRICE_LOW_TO_HIGH}
-						type="radio"
-						name={SORT_BY_PRICE}
-						id={PRICE_LOW_TO_HIGH}
-						onChange={() => {
-							productsDispatch({
-								type: SORT_BY_PRICE,
-								value: PRICE_LOW_TO_HIGH
-							});
-						}}
-					/>
 					<label htmlFor={PRICE_LOW_TO_HIGH} className="pr-1">
+						<input
+							checked={productsState[SORT_BY_PRICE] === PRICE_LOW_TO_HIGH}
+							type="radio"
+							name={SORT_BY_PRICE}
+							id={PRICE_LOW_TO_HIGH}
+							onChange={() => {
+								productsDispatch({
+									type: SORT_BY_PRICE,
+									value: PRICE_LOW_TO_HIGH
+								});
+							}}
+						/>
 						Low To High
 					</label>
 					<label htmlFor={PRICE_LOW_TO_HIGH} className="pr-1">
 						Price under {productsState.priceRange}
+						<input
+							min={100}
+							max={1000}
+							step={50}
+							value={productsState.priceRange}
+							type="range"
+							name={PRICE_RANGE}
+							id={PRICE_RANGE}
+							onChange={(e) => {
+								productsDispatch({
+									type: PRICE_RANGE,
+									value: Number(e.target.value)
+								});
+							}}
+						/>
 					</label>
-					<input
-						min={100}
-						max={1000}
-						step={50}
-						value={productsState.priceRange}
-						type="range"
-						name={PRICE_RANGE}
-						id={PRICE_RANGE}
-						onChange={(e) => {
-							productsDispatch({
-								type: PRICE_RANGE,
-								value: Number(e.target.value)
-							});
-						}}
-					/>
 				</fieldset>
 			</div>
 			<div className="mb-1">

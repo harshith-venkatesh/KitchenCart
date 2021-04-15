@@ -49,23 +49,29 @@ export const ProductListing = ({ setRoute }) => {
 	return (
 		<>
 			<h2>Product Listing</h2>
-			<Filter />
-			<div className="mt-1"></div>
-			<div className="product-container">
-				{tranformProducts(productsState).map(({ id, ...rest }) => (
-					<Card key={id}>
-						<WishListButton id={id} {...rest} />
-						<CardBody {...rest} />
-						<CardFooter>
-							<AddToCartButton
-								setRoute={setRoute}
-								renderPage={"ProductListing"}
-								id={id}
-								{...rest}
-							/>
-						</CardFooter>
-					</Card>
-				))}
+			<div className="container">
+				<div className="sidenav-container">
+					<Filter />
+				</div>
+				.<div className="mt-1"></div>
+				<div className="component-container">
+					<div className="product-container">
+						{tranformProducts(productsState).map(({ id, ...rest }) => (
+							<Card key={id}>
+								<WishListButton id={id} {...rest} />
+								<CardBody {...rest} />
+								<CardFooter>
+									<AddToCartButton
+										setRoute={setRoute}
+										renderPage={"ProductListing"}
+										id={id}
+										{...rest}
+									/>
+								</CardFooter>
+							</Card>
+						))}
+					</div>
+				</div>
 			</div>
 		</>
 	);
