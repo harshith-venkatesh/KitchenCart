@@ -4,14 +4,14 @@ import { dataReducer, initialData } from "../reducers/dataReducer";
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-	const [{ cartList, wishList }, dispatch] = useReducer(
+	const [{ cartListItems, wishListItems }, dispatch] = useReducer(
 		dataReducer,
 		initialData
 	);
 
 	return (
 		<DataContext.Provider
-			value={{ cartList, wishList, dataDispatch: dispatch }}
+			value={{ cartListItems, wishListItems, dataDispatch: dispatch }}
 		>
 			{children}
 		</DataContext.Provider>

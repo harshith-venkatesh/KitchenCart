@@ -1,28 +1,25 @@
 @import url("https://shankhacss.netlify.app/styles.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("react-toastify/dist/ReactToastify.css");
 * {
 	padding: 0;
 	margin: 0;
+	
 }
 body {
 	width: 100vw;
 	height: 100vh;
 	margin: 0 auto;
+	overflow-x: hidden;
 }
 
 .product-container {
 	display: grid;
 	margin: 0 auto;
-	grid-template-columns: repeat(4, 1fr);
-	grid-gap: 1rem;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 2rem;
 }
 
-.cart-container {
-	display: grid;
-	margin: 0 auto;
-	grid-template-columns: repeat(1, 1fr);
-	grid-gap: 1rem;
-}
 .product-card {
 	text-align: left;
 	color: #4b5563;
@@ -62,7 +59,7 @@ body {
 	width: 100%;
 }
 .main-container {
-	width: 90%;
+	width: 92%;
 	margin: auto;
 }
 
@@ -97,12 +94,78 @@ body {
 	display: flex;
 	justify-content: center;
 }
+
+.mt-4{
+	margin-top:4rem;
+}
+
+.sticky {
+	position: fixed;
+	top:0;
+	width:100%;
+	height:5rem;
+	z-index: 1;
+	margin-bottom:1rem ;
+}
+
+.page-title{
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 550;
+	padding: 0.5rem;
+}
+
+
+.cart__container {
+	display: grid;
+	margin: 0 auto;
+	grid-template-columns: 1fr 15rem;
+	grid-template-rows: auto;
+	grid-gap: 1rem;
+	grid-template-areas: "listing billing";
+}
+
+.cart__container__listing{
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	margin: 1rem auto;
+	grid-area:listing;
+}
+
+.cart__container__billing{
+	grid-area:billing;
+}
+
+.cart__container__actions{
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+.Toastify__close-button{
+	color:var(--grey-500);
+}
+
+.Toastify__close-button:hover,
+.Toastify__close-button:focus{
+	color:var(--text-primary);
+}
+
 @media (max-width: 600px) {
 	.product-container {
 		display: grid;
 		margin: 0 auto;
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 0.5rem;
+	}
+	.cart__container {
+		display: grid;
+		margin: 0 auto;
+		grid-template-rows: auto 1fr;
+		grid-template-columns: auto;
+		grid-gap: 1rem;
+		grid-template-areas: "billing" "listing";
 	}
 	.image-product-card {
 		padding: 0.1rem;

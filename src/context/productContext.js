@@ -4,7 +4,6 @@ import {
 	ONLY_FAST_DELIVERY,
 	productReducer
 } from "../reducers/productReducer";
-import { productData } from "../constants/productData";
 
 const ProductContext = createContext();
 

@@ -1,3 +1,3 @@
 export const checkItem = (array, id) => {
-	return !!array.find((item) => item.id === id);
-};
+  return !!array?.some((item) => item.id === id)
+}
