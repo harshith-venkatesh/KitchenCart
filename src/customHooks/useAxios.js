@@ -27,6 +27,7 @@ export const useAxios = (url) => {
   async function getData() {
     return requestAPI(async () => {
       const response = await axios.get(url)
+      console.log(getRegion(url))
       return response.data[`${getRegion(url)}Items`]
     })
   }

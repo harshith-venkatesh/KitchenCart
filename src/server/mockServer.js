@@ -33,13 +33,13 @@ export function makeServer({ environment = "development" } = {}) {
   let server = createServer({
     environment,
     models: {
-      wishListItems: Model,
-      cartListItems: Model,
+      wishListItem: Model,
+      cartListItem: Model,
       productListItem: Model,
     },
     factories: {
-      wishListItems: getItem(),
-      cartListItems: getItem(),
+      wishListItem: getItem(),
+      cartListItem: getItem(),
       productListItem: getItem(),
     },
     seeds(server) {
@@ -69,8 +69,8 @@ export function makeServer({ environment = "development" } = {}) {
         let id = request.params.id
         return schema.cartListItems.find(id).destroy()
       })
-      this.get("/productListItem", (schema) => {
-        return schema.productListItem.all()
+      this.get("/productList", (schema) => {
+        return schema.productListItems.all()
       })
     },
   })

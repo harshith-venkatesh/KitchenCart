@@ -48,17 +48,19 @@ const tranformProducts = (state) => {
 
 export const ProductListing = ({ setRoute }) => {
   const { productsState, productsDispatch } = useProducts()
-  const { getData: getProductsData, isLoading } = useAxios(
-    "/api/productListItem"
-  )
-  useEffect(() => {
-    ;async () => {
-      if (productsState.products.length === 0) {
-        const products = await getProductsData()
-        console.log({ products })
-        productsDispatch({ type: SET_PRODUCTS, products })
-      }
+  const { getData: getProductsData, isLoading } = useAxios("/api/productList")
+
+  const fetchProducts = async () => {
+    if (productsState.products.length === 0) {
+      console.log("checking here")
+      console.log(productsState.products.length)
+      const products = await getProductsData()
+      console.log({ products })
+      productsDispatch({ type: SET_PRODUCTS, products })
     }
+  }
+  useEffect(() => {
+    fetchProducts()
     return () => {
       console.log("products listing")
     }
