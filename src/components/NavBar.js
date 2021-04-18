@@ -8,10 +8,7 @@ export const NavBar = ({ route, setRoute }) => {
   return (
     <React.Fragment>
       <nav className="navbar-container ">
-        <div
-          className="header-logo "
-          onClick={() => setRoute("ProductListing")}
-        >
+        <div className="header-logo" onClick={() => setRoute("ProductListing")}>
           <img
             className="header-image"
             src="https://mythologyandvaishbhat.files.wordpress.com/2020/07/shankh.png?w=500"
