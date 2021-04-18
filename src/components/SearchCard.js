@@ -6,12 +6,16 @@ export const SearchCard = () => {
   const [searchParam, setSearchParam] = useState("")
   const { productsDispatch } = useProducts()
   const searchProducts = () => {
-    searchParam.length > 0
-      ? productsDispatch({
-          type: SEARCH_PRODUCT,
-          value: searchParam.toLowerCase(),
-        })
-      : productsDispatch({ type: SEARCH_PRODUCT, value: "" })
+    productsDispatch({
+      type: SEARCH_PRODUCT,
+      value: searchParam.toLowerCase(),
+    })
+  }
+
+  const searchProductsOnEnter = (e) => {
+    if (e.key === "Enter") {
+      searchProducts()
+    }
   }
   const clearSearchResult = () => {
     setSearchParam("")
@@ -27,7 +31,7 @@ export const SearchCard = () => {
             placeholder="Search For Products"
             value={searchParam}
             onChange={(e) => setSearchParam(e.target.value)}
-            onKeyDown={searchProducts}
+            onKeyDown={searchProductsOnEnter}
           ></input>
           {searchParam.length !== 0 && (
             <div className="btn--clear">

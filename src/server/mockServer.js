@@ -30,7 +30,7 @@ function getItem() {
 }
 
 export function makeServer({ environment = "development" } = {}) {
-  let server = createServer({
+  createServer({
     environment,
     models: {
       wishListItem: Model,
@@ -80,5 +80,4 @@ export function makeServer({ environment = "development" } = {}) {
       })
     },
   })
-  return server
 }
