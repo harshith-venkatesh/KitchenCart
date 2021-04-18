@@ -1,14 +1,42 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { CloseButton } from "../components/Button/Button"
 import { Card, CardBody } from "../components/Card/Card"
 import { useData } from "../context/dataContext"
-import { DEC_QTY, INC_QTY, REMOVE_CARTLIST_ITEM } from "../reducers/dataReducer"
+import { useAxios } from "../customHooks/useAxios"
+import {
+  DEC_QTY,
+  INC_QTY,
+  REMOVE_CARTLIST_ITEM,
+  SET_CARTLIST_ITEMS,
+} from "../reducers/dataReducer"
 
 const getTotalPrice = (items) => {
   return items.reduce((amount, { price, qty }) => amount + price * qty, 0)
 }
 export const Cart = ({ setRoute }) => {
   const { cartListItems, dataDispatch } = useData()
+  const {
+    getData: getCartData,
+    deleteData: deleteCartData,
+    isLoading,
+  } = useAxios("/api/cartList")
+  useEffect(() => {
+    ;(async () => {
+      if (cartListItems.length === 0) {
+        const fetchCartItems = await getCartData()
+        dataDispatch({ type: SET_CARTLIST_ITEMS, fetchCartItems })
+      }
+    })()
+  }, [])
+
+  const deleteCartItem = async (id) => {
+    const success = await deleteCartData(id)
+    console.log(success)
+    if (success) {
+      dataDispatch({ type: REMOVE_CARTLIST_ITEM, id })
+    }
+  }
+
   return (
     <React.Fragment>
       <div className="page-title">My Cart</div>
@@ -29,8 +57,7 @@ export const Cart = ({ setRoute }) => {
             <Card key={id}>
               <CloseButton
                 onClick={() => {
-                  
-                  dataDispatch({ type: REMOVE_CARTLIST_ITEM, id })
+                  deleteCartItem(id)
                 }}
               />
               <CardBody {...rest} cartHorizontal={true} />
@@ -40,7 +67,7 @@ export const Cart = ({ setRoute }) => {
                   onClick={() => {
                     qty > 1
                       ? dataDispatch({ type: DEC_QTY, id })
-                      : dataDispatch({ type: REMOVE_CARTLIST_ITEM, id })
+                      : deleteCartItem(id)
                   }}
                 >
                   {qty > 1 ? (

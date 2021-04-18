@@ -34,9 +34,11 @@ export const useAxios = (url) => {
 
   async function postData(newItem) {
     return requestAPI(async () => {
+      console.log(newItem, url)
       const response = await axios.post(url, newItem)
+      console.log({ response })
       return response.data[`${getRegion(url)}Items`]
-    }, `${newItem.name} added to your ${getRegion(url)}List`)
+    }, `${newItem.name} added to your ${getRegion(url)}`)
   }
 
   async function deleteData(id) {

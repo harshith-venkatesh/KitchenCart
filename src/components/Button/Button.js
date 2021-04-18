@@ -15,14 +15,15 @@ export const CloseButton = ({ onClick }) => (
 
 export const AddToCartButton = ({ setRoute, renderPage, id, ...rest }) => {
   const { cartListItems, dataDispatch } = useData()
-  const { postData, isLoading } = useAxios("/api/cart")
+  const { postData, isLoading } = useAxios("/api/cartList")
 
   const postCartData = async () => {
     console.log("button check")
     const item = await postData({ id, qty: 1, ...rest })
+    console.log("cartListItem:", item)
     dataDispatch({
       type: ADD_CARTLIST_ITEM,
-      item,
+      item: { id, qty: 1, ...rest },
     })
   }
   const handleClick = () => {
@@ -50,16 +51,30 @@ const setWishListButtonClass = (wishListItems, id) => {
 }
 export const WishListButton = ({ id, ...rest }) => {
   const { wishListItems, dataDispatch } = useData()
+  const {
+    postData: postWishListData,
+    deleteData: deleteWishListData,
+  } = useAxios("/api/wishList")
   const handleClick = () => {
-    checkItem(wishListItems, id)
-      ? dataDispatch({
-          type: REMOVE_WISHLIST_ITEM,
-          id,
-        })
-      : dataDispatch({
+    if (checkItem(wishListItems, id)) {
+      ;(async () => {
+        const deleteSuccess = await deleteWishListData(id)
+        if (deleteSuccess) {
+          dataDispatch({
+            type: REMOVE_WISHLIST_ITEM,
+            id,
+          })
+        }
+      })()
+    } else {
+      ;(async () => {
+        const item = await postWishListData({ id, ...rest })
+        dataDispatch({
           type: ADD_WISHLIST_ITEM,
           item: { id, ...rest },
         })
+      })()
+    }
   }
 
   return (
@@ -71,4 +86,3 @@ export const WishListButton = ({ id, ...rest }) => {
     </div>
   )
 }
-//operatin button

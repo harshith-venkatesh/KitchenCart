@@ -5,6 +5,7 @@ export const PRICE_HIGH_TO_LOW = "PRICE_HIGH_TO_LOW"
 export const PRICE_LOW_TO_HIGH = "PRICE_LOW_TO_HIGH"
 export const PRICE_RANGE = "PRICE_RANGE"
 export const SET_PRODUCTS = "SET_PRODUCTS"
+export const SEARCH_PRODUCT = "SEARCH_PRODUCT"
 export const productReducer = (state, { type, value, products }) => {
   switch (type) {
     case SET_PRODUCTS:
@@ -33,6 +34,11 @@ export const productReducer = (state, { type, value, products }) => {
       return {
         ...state,
         priceRange: value,
+      }
+    case SEARCH_PRODUCT:
+      return {
+        ...state,
+        searchParam: value,
       }
     default:
       return state

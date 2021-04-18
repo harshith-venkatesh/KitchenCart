@@ -13,6 +13,7 @@ export const ProductProvider = ({ children }) => {
     [INCLUDE_OUT_OF_STOCK]: false,
     [ONLY_FAST_DELIVERY]: false,
     priceRange: 1000,
+    searchParam: "",
   })
 
   return (

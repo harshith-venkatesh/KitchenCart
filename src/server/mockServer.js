@@ -43,7 +43,7 @@ export function makeServer({ environment = "development" } = {}) {
       productListItem: getItem(),
     },
     seeds(server) {
-      server.createList("productListItem", 50)
+      server.createList("productListItem", 100)
     },
     routes() {
       this.namespace = "api"
@@ -54,8 +54,14 @@ export function makeServer({ environment = "development" } = {}) {
 
         return schema.wishListItems.create({ ...attrs })
       })
+      this.post("/wishList", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody)
+        return schema.wishListItems.create({ ...attrs })
+      })
       this.delete("/wishList/:id", (schema, request) => {
         let id = request.params.id
+        console.log(id)
+        console.log(schema.wishListItems.find(id))
         return schema.wishListItems.find(id).destroy()
       })
       this.get("/cartList", (schema) => {
@@ -63,7 +69,7 @@ export function makeServer({ environment = "development" } = {}) {
       })
       this.post("/cartList", (schema, request) => {
         let attrs = JSON.parse(request.requestBody)
-        return schema.cartListItems.create({ ...attrs })
+        return schema.cartListItems.create(attrs)
       })
       this.delete("/cartList/:id", (schema, request) => {
         let id = request.params.id

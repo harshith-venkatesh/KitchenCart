@@ -17,6 +17,11 @@ const tranformProducts = (state) => {
   const sortCheck = state[SORT_BY_PRICE]
 
   let sortedProducts = state.products
+  if (state.searchParam.length !== 0) {
+    sortedProducts = sortedProducts.filter((product) =>
+      product.name.toLowerCase().includes(state.searchParam)
+    )
+  }
   console.log(state.products)
   if (sortCheck) {
     sortedProducts = sortedProducts.sort((a, b) =>
@@ -35,10 +40,6 @@ const tranformProducts = (state) => {
     )
   }
   let finalProducts = priceRangeProducts
-  console.log(state)
-
-  console.log(state.priceRange)
-  console.log(finalProducts)
   finalProducts = priceRangeProducts.filter((product) => {
     return product.price < state.priceRange
   })
@@ -49,18 +50,16 @@ const tranformProducts = (state) => {
 export const ProductListing = ({ setRoute }) => {
   const { productsState, productsDispatch } = useProducts()
   const { getData: getProductsData, isLoading } = useAxios("/api/productList")
-
-  const fetchProducts = async () => {
-    if (productsState.products.length === 0) {
-      console.log("checking here")
-      console.log(productsState.products.length)
-      const products = await getProductsData()
-      console.log({ products })
-      productsDispatch({ type: SET_PRODUCTS, products })
-    }
-  }
   useEffect(() => {
-    fetchProducts()
+    ;(async () => {
+      if (productsState.products.length === 0) {
+        console.log("checking here")
+        console.log(productsState.products.length)
+        const products = await getProductsData()
+        console.log({ products })
+        productsDispatch({ type: SET_PRODUCTS, products })
+      }
+    })()
     return () => {
       console.log("products listing")
     }
@@ -75,22 +74,33 @@ export const ProductListing = ({ setRoute }) => {
         </div>
         <div className="component-container">
           <div className="product-container">
-            {tranformProducts(productsState).map(({ id, inStock, ...rest }) => (
-              <Card key={id}>
-                <WishListButton id={id} inStock={inStock} {...rest} />
-                <CardBody inStock={inStock} {...rest} />
-                <CardFooter>
-                  {inStock && (
-                    <AddToCartButton
-                      setRoute={setRoute}
-                      renderPage={"ProductListing"}
-                      id={id}
-                      {...rest}
-                    />
-                  )}
-                </CardFooter>
-              </Card>
-            ))}
+            {isLoading ? (
+              <span>
+                Loading....
+                <i className="fa fa-spinner fa-pulse" />
+              </span>
+            ) : (
+              <React.Fragment>
+                {tranformProducts(productsState).map(
+                  ({ id, inStock, ...rest }) => (
+                    <Card key={id}>
+                      <WishListButton id={id} inStock={inStock} {...rest} />
+                      <CardBody inStock={inStock} {...rest} />
+                      <CardFooter>
+                        {inStock && (
+                          <AddToCartButton
+                            setRoute={setRoute}
+                            renderPage={"ProductListing"}
+                            id={id}
+                            {...rest}
+                          />
+                        )}
+                      </CardFooter>
+                    </Card>
+                  )
+                )}
+              </React.Fragment>
+            )}
           </div>
         </div>
       </div>
