@@ -18,11 +18,12 @@ const getTotalPrice = (items) => {
 }
 export const Cart = ({ setRoute }) => {
   const { cartListItems, dataDispatch } = useData()
+  const { getData: getCartData, isLoading } = useAxios("/api/cartList")
   const {
-    getData: getCartData,
     deleteData: deleteCartData,
-    isLoading,
+    isLoading: isDeleteDataLoading,
   } = useAxios("/api/cartList")
+
   useEffect(() => {
     ;(async () => {
       if (cartListItems.length === 0) {
@@ -62,7 +63,14 @@ export const Cart = ({ setRoute }) => {
             </div>
             <div className="invoice__division__total">
               <span> TOTAL:</span>
-              <span> &#8377; {getTotalPrice(cartListItems)}/-</span>
+              <span>
+                {" "}
+                &#8377;{" "}
+                {Number(getTotalPrice(cartListItems)) < 3000
+                  ? Number(getTotalPrice(cartListItems)) + 50
+                  : Number(getTotalPrice(cartListItems))}
+                /-
+              </span>
             </div>
           </div>
         )}
