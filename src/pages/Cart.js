@@ -11,7 +11,10 @@ import {
 } from "../reducers/dataReducer"
 
 const getTotalPrice = (items) => {
-  return items.reduce((amount, { price, qty }) => amount + price * qty, 0)
+  return items.reduce(
+    (amount, { inStock, price, qty }) => amount + price * qty * inStock,
+    0
+  )
 }
 export const Cart = ({ setRoute }) => {
   const { cartListItems, dataDispatch } = useData()
@@ -37,63 +40,95 @@ export const Cart = ({ setRoute }) => {
     }
   }
 
+  const invoiceGenerator = () => {
+    return (
+      <>
+        {getTotalPrice(cartListItems) !== 0 && (
+          <div className="invoice__division">
+            <div className="invoice__division__header">
+              There are {cartListItems.length} Items
+            </div>
+            <div className="invoice__division__list">
+              <span>Total Amount:</span>{" "}
+              <span>&#8377; {getTotalPrice(cartListItems)}/-</span>
+            </div>
+            <div className="invoice__division__list">
+              <span>Delivery Charges:</span>
+              {getTotalPrice(cartListItems) < 3000 ? (
+                <span> &#8377; 50/-</span>
+              ) : (
+                <span> &#8377; 0/-</span>
+              )}
+            </div>
+            <div className="invoice__division__total">
+              <span> TOTAL:</span>
+              <span> &#8377; {getTotalPrice(cartListItems)}/-</span>
+            </div>
+          </div>
+        )}
+      </>
+    )
+  }
+
   return (
     <React.Fragment>
       <div className="page-title">My Cart</div>
-      <div className="cart__container">
-        <div className="cart__container__listing">
+      {isLoading ? (
+        <div className="page-loader"></div>
+      ) : (
+        <>
           {cartListItems.length === 0 && (
-            <div>
-              Cart is Empty
-              <button
-                className="btn btn-solid-primary"
-                onClick={() => setRoute("ProductListing")}
-              >
-                Continue Shopping
-              </button>
-            </div>
-          )}
-          {cartListItems.map(({ id, qty, ...rest }) => (
-            <Card key={id}>
-              <CloseButton
-                onClick={() => {
-                  deleteCartItem(id)
-                }}
-              />
-              <CardBody {...rest} cartHorizontal={true} />
-              <div className="cart__container__action">
+            <div className="empty__data__area">
+              <i className="fa fa-shopping-cart empty__icon"></i>
+              <div>
+                Cart is Empty
                 <button
-                  className="btn"
-                  onClick={() => {
-                    qty > 1
-                      ? dataDispatch({ type: DEC_QTY, id })
-                      : deleteCartItem(id)
-                  }}
+                  className="btn btn-solid-primary"
+                  onClick={() => setRoute("ProductListing")}
                 >
-                  {qty > 1 ? (
-                    <i className="fa fa-minus"></i>
-                  ) : (
-                    <i className="fa fa-trash"></i>
-                  )}
-                </button>
-
-                <span className="">{qty}</span>
-                <button
-                  className="btn "
-                  onClick={() => {
-                    dataDispatch({ type: INC_QTY, id })
-                  }}
-                >
-                  <i className="fa fa-plus"></i>
+                  Continue Shopping
                 </button>
               </div>
-            </Card>
-          ))}
-        </div>
-        <div className="cart__container__billing">
-          <div>Total: Rs. {getTotalPrice(cartListItems)}</div>
-        </div>
-      </div>
+            </div>
+          )}
+          <div className="cart__container">
+            <div className="cart__container__listing">
+              {cartListItems.map(({ id, qty, ...rest }) => (
+                <Card key={id}>
+                  <CardBody {...rest} />
+                  <div className="cart__container__action">
+                    <button
+                      className="btn"
+                      onClick={() => {
+                        qty > 1
+                          ? dataDispatch({ type: DEC_QTY, id })
+                          : deleteCartItem(id)
+                      }}
+                    >
+                      {qty > 1 ? (
+                        <i className="fa fa-minus"></i>
+                      ) : (
+                        <i className="fa fa-trash"></i>
+                      )}
+                    </button>
+
+                    <span className="">{qty}</span>
+                    <button
+                      className="btn "
+                      onClick={() => {
+                        dataDispatch({ type: INC_QTY, id })
+                      }}
+                    >
+                      <i className="fa fa-plus"></i>
+                    </button>
+                  </div>
+                </Card>
+              ))}
+            </div>
+            <div className="cart__container__billing">{invoiceGenerator()}</div>
+          </div>
+        </>
+      )}
     </React.Fragment>
   )
 }

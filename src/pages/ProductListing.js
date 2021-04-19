@@ -67,19 +67,15 @@ export const ProductListing = ({ setRoute }) => {
   return (
     <>
       <div className="page-title">Product Listing</div>
-
-      <div className="container">
-        <div className="sidenav-container">
-          <Filter />
-        </div>
-        <div className="component-container">
-          <div className="product-container">
-            {isLoading ? (
-              <span>
-                Loading....
-                <i className="fa fa-spinner fa-pulse" />
-              </span>
-            ) : (
+      {isLoading ? (
+        <div className="page-loader"></div>
+      ) : (
+        <div className="container">
+          <div className="sidenav-container">
+            <Filter />
+          </div>
+          <div className="component-container">
+            <div className="product-container">
               <React.Fragment>
                 {tranformProducts(productsState).map(
                   ({ id, inStock, ...rest }) => (
@@ -93,6 +89,7 @@ export const ProductListing = ({ setRoute }) => {
                             renderPage={"ProductListing"}
                             id={id}
                             {...rest}
+                            inStock={inStock}
                           />
                         )}
                       </CardFooter>
@@ -100,10 +97,10 @@ export const ProductListing = ({ setRoute }) => {
                   )
                 )}
               </React.Fragment>
-            )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }

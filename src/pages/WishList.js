@@ -33,20 +33,21 @@ export const WishList = ({ setRoute }) => {
     <React.Fragment>
       <div className="page-title">My WishList</div>
       {isLoading ? (
-        <span className="spinner--large">
-          <i className="fa fa-spinner fa-pulse" />
-        </span>
+        <div className="page-loader"></div>
       ) : (
         <div>
           {wishListItems.length === 0 && (
-            <div>
-              WishList is Empty
-              <button
-                className="btn btn-solid-primary"
-                onClick={() => setRoute("ProductListing")}
-              >
-                Continue Shopping
-              </button>
+            <div className="empty__data__area">
+              <i className="fa fa-heart empty__icon"></i>
+              <div>
+                Wish List is Empty
+                <button
+                  className="btn btn-solid-primary"
+                  onClick={() => setRoute("ProductListing")}
+                >
+                  Continue Shopping
+                </button>
+              </div>
             </div>
           )}
           <div className="cart__container">
