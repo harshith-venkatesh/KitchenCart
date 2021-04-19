@@ -36,10 +36,14 @@ export const AddToCartButton = ({ setRoute, renderPage, id, ...rest }) => {
   return (
     <button
       disabled={isLoading}
-      className="btn btn-solid-primary"
+      className="btn btn-outline-primary"
       onClick={handleClick}
     >
-      {checkItem(cartListItems, id) ? "Go To Cart" : "Add To Cart"}
+      {isLoading
+        ? "Adding to Cart..."
+        : checkItem(cartListItems, id)
+        ? "Go To Cart"
+        : "Add To Cart"}
     </button>
   )
 }

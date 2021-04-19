@@ -140,6 +140,16 @@ body {
   padding: 0.5rem 0;
 }
 
+.btn-outline-primary:hover{
+	background-color: var(--primary-color);
+	color:white;
+}
+
+.btn-outline-primary:disabled{
+	background-color: var(--primary-color);
+	color:white;
+}
+
 /* .invoice__division__list,.invoice__division__total >span {
 	display: flex;
 	justify-content: space-around;
