@@ -31,9 +31,9 @@ export const WishList = ({ setRoute }) => {
   }
   return (
     <React.Fragment>
-      <div className="page-title">My WishList</div>
+      <div className="page__title">My WishList</div>
       {isLoading ? (
-        <div className="page-loader"></div>
+        <div className="page__loader"></div>
       ) : (
         <div>
           {wishListItems.length === 0 && (
@@ -51,7 +51,7 @@ export const WishList = ({ setRoute }) => {
             </div>
           )}
           <div className="cart__container">
-            <div className="product-container">
+            <div className="product__container">
               {wishListItems.map(({ id, ...rest }) => (
                 <Card key={id}>
                   <CloseButton onClick={() => deleteWishListItem(id)} />

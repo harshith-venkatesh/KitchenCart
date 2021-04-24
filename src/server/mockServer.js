@@ -60,8 +60,6 @@ export function makeServer({ environment = "development" } = {}) {
       })
       this.delete("/wishList/:id", (schema, request) => {
         let id = request.params.id
-        console.log(id)
-        console.log(schema.wishListItems.find(id))
         return schema.wishListItems.find(id).destroy()
       })
       this.get("/cartList", (schema) => {

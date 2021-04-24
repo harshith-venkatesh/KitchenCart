@@ -22,7 +22,6 @@ const tranformProducts = (state) => {
       product.name.toLowerCase().includes(state.searchParam)
     )
   }
-  console.log(state.products)
   if (sortCheck) {
     sortedProducts = sortedProducts.sort((a, b) =>
       sortCheck === PRICE_HIGH_TO_LOW ? b.price - a.price : a.price - b.price
@@ -43,7 +42,6 @@ const tranformProducts = (state) => {
   finalProducts = priceRangeProducts.filter((product) => {
     return product.price < state.priceRange
   })
-  console.log(finalProducts)
   return finalProducts
 }
 
@@ -53,29 +51,26 @@ export const ProductListing = ({ setRoute }) => {
   useEffect(() => {
     ;(async () => {
       if (productsState.products.length === 0) {
-        console.log("checking here")
-        console.log(productsState.products.length)
         const products = await getProductsData()
-        console.log({ products })
         productsDispatch({ type: SET_PRODUCTS, products })
       }
     })()
     return () => {
-      console.log("products listing")
+      console.log("Moving out of products listing component")
     }
   }, [])
   return (
     <>
-      <div className="page-title">Product Listing</div>
+      <div className="page__title">Product Listing</div>
       {isLoading ? (
-        <div className="page-loader"></div>
+        <div className="page__loader"></div>
       ) : (
         <div className="container">
           <div className="sidenav-container">
             <Filter />
           </div>
           <div className="component-container">
-            <div className="product-container">
+            <div className="product__container">
               <React.Fragment>
                 {tranformProducts(productsState).map(
                   ({ id, inStock, ...rest }) => (

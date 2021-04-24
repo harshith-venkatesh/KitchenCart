@@ -12,7 +12,7 @@ export const Filter = () => {
   const { productsState, productsDispatch } = useProducts()
   return (
     <>
-      <div className="mt-1">
+      <div className="mt--1">
         <fieldset className="p-1">
           <legend>Price</legend>
           <div>

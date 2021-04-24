@@ -1,5 +1,5 @@
 export const Card = ({ children }) => (
-  <div className="product-card">{children}</div>
+  <div className="product__card">{children}</div>
 );
 
 export const CardFooter = ({ children }) => <>{children}</>;
@@ -12,11 +12,10 @@ export const CardBody = ({
   fastDelivery,
   rating,
   offers,
-  cartHorizontal,
   idealFor
 }) => (
-  <div className={cartHorizontal ? "cart-horizontal" : "card-body"}>
-    <img src={image} alt={name} className="image-product-card" />
+  <div className={"product__card___body"}>
+    <img src={image} alt={name} className="product__card__image" />
     <div className="p-1">
       <h4>{name}</h4>
       <p>Rs. {price}</p>

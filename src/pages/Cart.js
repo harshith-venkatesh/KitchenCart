@@ -35,7 +35,6 @@ export const Cart = ({ setRoute }) => {
 
   const deleteCartItem = async (id) => {
     const success = await deleteCartData(id)
-    console.log(success)
     if (success) {
       dataDispatch({ type: REMOVE_CARTLIST_ITEM, id })
     }
@@ -80,9 +79,9 @@ export const Cart = ({ setRoute }) => {
 
   return (
     <React.Fragment>
-      <div className="page-title">My Cart</div>
+      <div className="page__title">My Cart</div>
       {isLoading ? (
-        <div className="page-loader"></div>
+        <div className="page__loader"></div>
       ) : (
         <>
           {cartListItems.length === 0 && (

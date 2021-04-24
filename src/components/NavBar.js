@@ -4,7 +4,6 @@ import { SearchCard } from "./SearchCard"
 
 export const NavBar = ({ route, setRoute }) => {
   const { cartListItems, wishListItems } = useData()
-  console.log({ cartListItems, wishListItems })
   return (
     <React.Fragment>
       <nav className="navbar-container ">
@@ -20,8 +19,8 @@ export const NavBar = ({ route, setRoute }) => {
         </div>
         <SearchCard />
 
-        <div className="icons-container">
-          <div className="pr-half">
+        <div className="icons__container">
+          <div className="pr--half">
             <div
               className="badge-icon-container "
               onClick={() => setRoute("ProductListing")}
@@ -32,7 +31,7 @@ export const NavBar = ({ route, setRoute }) => {
 							</p> */}
             </div>
           </div>
-          <div className="pr-half">
+          <div className="pr--half">
             <div
               className="badge-icon-container "
               onClick={() => setRoute("Cart")}

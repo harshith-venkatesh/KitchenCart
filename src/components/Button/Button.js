@@ -8,7 +8,7 @@ import {
 import { checkItem } from "../../utils/checkItem"
 
 export const CloseButton = ({ onClick }) => (
-  <div className="product-card-badge" onClick={onClick}>
+  <div className="product__card__badge" onClick={onClick}>
     <i className="fa fa-times"></i>
   </div>
 )
@@ -18,9 +18,7 @@ export const AddToCartButton = ({ setRoute, renderPage, id, ...rest }) => {
   const { postData, isLoading } = useAxios("/api/cartList")
 
   const postCartData = async () => {
-    console.log("button check")
     const item = await postData({ id, qty: 1, ...rest })
-    console.log("cartListItem:", item)
     dataDispatch({
       type: ADD_CARTLIST_ITEM,
       item: { id, qty: 1, ...rest },
@@ -50,8 +48,8 @@ export const AddToCartButton = ({ setRoute, renderPage, id, ...rest }) => {
 
 const setWishListButtonClass = (wishListItems, id) => {
   return checkItem(wishListItems, id)
-    ? "product-card-badge red btn-close"
-    : "product-card-badge gray btn-close"
+    ? "product__card__badge red btn-close"
+    : "product__card__badge gray btn-close"
 }
 export const WishListButton = ({ id, ...rest }) => {
   const { wishListItems, dataDispatch } = useData()
