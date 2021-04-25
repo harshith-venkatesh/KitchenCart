@@ -1,10 +1,17 @@
 import React, { useEffect } from 'react'
-import { AddToCartButton, CloseButton } from '../components/Button/Button'
-import { Card, CardBody, CardFooter } from '../components/Card/Card'
+
 import { useData } from '../context/dataContext'
 import { useAxios } from '../customHooks/useAxios'
 import { REMOVE_WISHLIST_ITEM } from '../reducers/dataReducer'
 import { useNavigate } from 'react-router-dom'
+import {
+  AddToCartButton,
+  Card,
+  CardBody,
+  CardFooter,
+  Filter,
+  WishListButton
+} from '../components'
 export const WishList = () => {
   let navigate = useNavigate()
   const { wishListItems, dataDispatch } = useData()

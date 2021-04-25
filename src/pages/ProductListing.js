@@ -8,9 +8,14 @@ import {
   SORT_BY_PRICE
 } from '../reducers/productReducer'
 
-import { Card, CardBody, CardFooter } from '../components/Card/Card'
-import { AddToCartButton, WishListButton } from '../components/Button/Button'
-import { Filter } from '../components'
+import {
+  AddToCartButton,
+  Card,
+  CardBody,
+  CardFooter,
+  Filter,
+  WishListButton
+} from '../components'
 import { useAxios } from '../customHooks/useAxios'
 
 const tranformProducts = (state) => {

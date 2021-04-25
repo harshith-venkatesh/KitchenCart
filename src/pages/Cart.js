@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react'
-import { CloseButton } from '../components/Button/Button'
-import { Card, CardBody } from '../components/Card/Card'
 import { useData } from '../context/dataContext'
 import { useAxios } from '../customHooks/useAxios'
 import {
@@ -10,6 +8,7 @@ import {
   SET_CARTLIST_ITEMS
 } from '../reducers/dataReducer'
 import { useNavigate } from 'react-router-dom'
+import { Card, CardBody } from '../components'
 const getTotalPrice = (items) => {
   return items.reduce(
     (amount, { inStock, price, qty }) => amount + price * qty * inStock,
