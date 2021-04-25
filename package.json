@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "faker": "5.5.2",
+    "history": "^5.0.0",
     "miragejs": "^0.1.41",
     "prop-types": "15.7.2",
     "react": "17.0.2",
