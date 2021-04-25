@@ -22,7 +22,7 @@ export const AddToCartButton = ({ id, ...rest }) => {
   const postCartData = async () => {
     const item = await postData({ id, qty: 1, ...rest })
     console.log(item)
-    if (item) {
+    if (item !== undefined) {
       dataDispatch({
         type: ADD_CARTLIST_ITEM,
         item: { id, qty: 1, ...rest }

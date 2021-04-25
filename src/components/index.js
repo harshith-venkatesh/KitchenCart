@@ -1,4 +1,4 @@
-export { AddToCartButton, WishListButton } from './Button/Button'
+export { AddToCartButton, WishListButton, CloseButton } from './Button/Button'
 export { Card, CardBody, CardFooter } from './Card/Card'
 export { Filter } from './Filter'
 export { Footer } from './Footer'

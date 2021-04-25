@@ -9,8 +9,7 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Filter,
-  WishListButton
+  CloseButton
 } from '../components'
 export const WishList = () => {
   let navigate = useNavigate()

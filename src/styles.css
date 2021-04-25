@@ -188,6 +188,8 @@ body {
 	top: -1.1rem;
 }
 
+
+
 .sticky {
 	position: sticky;
 	top: 0;
@@ -238,6 +240,19 @@ body {
 .Toastify__close-button:hover,
 .Toastify__close-button:focus {
 	color: var(--text-primary);
+}
+
+.Toastify__toast--success {
+	background: var(--green-50);
+	border-left: 5px solid var(--green-500);
+	color: var(--green-800)
+  
+}
+.Toastify__toast--error {
+	background: var(--red-50);
+	border-left: 5px solid var(--red-500);
+	color: var(--red-800)
+  
 }
 
 .search__input {
