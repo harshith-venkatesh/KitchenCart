@@ -22,7 +22,7 @@ export const WishList = ({ setRoute }) => {
   }, [])
 
   const deleteWishListItem = (id) => {
-    ;(async () => {
+    (async () => {
       const success = await deleteWishListData(id)
       if (success) {
         dataDispatch({ type: REMOVE_WISHLIST_ITEM, id })

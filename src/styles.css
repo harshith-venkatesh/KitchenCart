@@ -294,6 +294,11 @@ body {
 		grid-template-areas: "billing""listing";
 	}
 
+	.cart__container__listing {
+		grid-template-columns: 1fr;
+		grid-area: listing;
+	}
+
 	.product__card__image {
 		padding: 0.1rem;
 		margin-bottom: 0.4rem;
