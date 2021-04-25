@@ -1,22 +1,23 @@
-import { useState } from "react"
-import { NavBar } from "./components"
-import { Cart, Home, ProductListing, WishList } from "./pages"
-import { ToastContainer } from "react-toastify"
-import "./styles.css"
+import { useState } from 'react'
+import { NavBar } from './components'
+import { Cart, Home, ProductListing, WishList } from './pages'
+import { ToastContainer } from 'react-toastify'
+import './styles.css'
+import { Routes, Route } from 'react-router-dom'
 
 export default function App() {
-  const [route, setRoute] = useState("ProductListing")
   return (
     <>
-      <div className="navbar sticky">
-        <NavBar route={route} setRoute={setRoute} />
+      <div className='navbar sticky'>
+        <NavBar />
       </div>
       <ToastContainer />
-      <div className="ecomm__container">
-        {route === "Home" && <Home setRoute={setRoute} />}
-        {route === "ProductListing" && <ProductListing setRoute={setRoute} />}
-        {route === "WishList" && <WishList setRoute={setRoute} />}
-        {route === "Cart" && <Cart setRoute={setRoute} />}
+      <div className='ecomm__container'>
+        <Routes>
+          <Route path='/products' element={<ProductListing />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/wishList' element={<WishList />} />
+        </Routes>
       </div>
     </>
   )

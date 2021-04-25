@@ -1,8 +1,8 @@
-import axios from "axios"
-import { useState } from "react"
-import { errorToast, successToast } from "../components/Toast"
+import axios from 'axios'
+import { useState } from 'react'
+import { errorToast, successToast } from '../components/Toast'
 
-const getRegion = (url) => url.split("/")[2]
+const getRegion = (url) => url.split('/')[2]
 
 export const useAxios = (url) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -13,7 +13,7 @@ export const useAxios = (url) => {
       const data = await callback()
       return data
     } catch (error) {
-      errorToast("Request Failed! Try again later.")
+      errorToast('Request Failed! Try again later.')
     } finally {
       setIsLoading(false)
       if (toastMessage) {
@@ -32,7 +32,8 @@ export const useAxios = (url) => {
   async function postData(newItem) {
     return requestAPI(async () => {
       const response = await axios.post(url, newItem)
-      return response.data[`${getRegion(url)}Items`]
+      console.log(response)
+      return response.data[`${getRegion(url)}Item`]
     }, `${newItem.name} added to your ${getRegion(url)}`)
   }
 
@@ -40,7 +41,7 @@ export const useAxios = (url) => {
     return requestAPI(async () => {
       const response = await axios.delete(`${url}/${id}`)
       if (response.status === 204) {
-        return "success"
+        return 'success'
       }
     }, `Removed from ${getRegion(url)}`)
   }

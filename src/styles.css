@@ -66,11 +66,19 @@ body {
 }
 
 .ecomm__container {
-	width: 92%;
+	width: 90%;
 	margin: auto;
 }
 
+.navLink{
+	text-decoration: none;
+	color:white;
+}
 
+.navLink:focus,.navLink:hover,.navLink:visited,.navLink:link,.navLink:active{
+	text-decoration: none;
+	color:white;
+}
 .icons__container {
 	display: flex;
 	margin-top: 1rem;
@@ -91,6 +99,10 @@ body {
 
 .pr--half {
 	padding: 0 0.5rem;
+}
+
+.pr--two {
+	padding: 0 2rem;
 }
 
 .gray {
@@ -150,11 +162,7 @@ body {
 	color: white;
 }
 
-/* .invoice__division__list,.invoice__division__total >span {
-	display: flex;
-	justify-content: space-around;
-} */
-/* Safari */
+
 @-webkit-keyframes spin {
 	0% {
 		-webkit-transform: rotate(0deg);
@@ -175,15 +183,15 @@ body {
 	}
 }
 
+.status-badge-number {
+	right: -1rem;
+	top: -1.1rem;
+}
+
 .sticky {
 	position: sticky;
 	top: 0;
 	z-index: 1;
-	/* top:0;
-	width:100%;
-	height:5rem;
-	z-index: 1;
-	margin-bottom:1rem ; */
 }
 
 .page__title {
@@ -252,7 +260,7 @@ body {
 	z-index: 1;
 	border: none;
 	cursor: pointer;
-	background-color: var(--primary-color);
+	color: black;
 }
 
 .btn--search {
@@ -278,6 +286,10 @@ body {
 
 
 @media (max-width: 600px) {
+	.ecomm__container {
+		width: 100%;
+	}
+
 	.product__container {
 		display: grid;
 		margin: 0 auto;

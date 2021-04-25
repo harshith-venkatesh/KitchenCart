@@ -1,17 +1,17 @@
-import React, { useEffect } from "react"
-import { useProducts } from "../context/productContext"
+import React, { useEffect } from 'react'
+import { useProducts } from '../context/productContext'
 import {
   INCLUDE_OUT_OF_STOCK,
   ONLY_FAST_DELIVERY,
   PRICE_HIGH_TO_LOW,
   SET_PRODUCTS,
-  SORT_BY_PRICE,
-} from "../reducers/productReducer"
+  SORT_BY_PRICE
+} from '../reducers/productReducer'
 
-import { Card, CardBody, CardFooter } from "../components/Card/Card"
-import { AddToCartButton, WishListButton } from "../components/Button/Button"
-import { Filter } from "../components"
-import { useAxios } from "../customHooks/useAxios"
+import { Card, CardBody, CardFooter } from '../components/Card/Card'
+import { AddToCartButton, WishListButton } from '../components/Button/Button'
+import { Filter } from '../components'
+import { useAxios } from '../customHooks/useAxios'
 
 const tranformProducts = (state) => {
   const sortCheck = state[SORT_BY_PRICE]
@@ -45,9 +45,9 @@ const tranformProducts = (state) => {
   return finalProducts
 }
 
-export const ProductListing = ({ setRoute }) => {
+export const ProductListing = () => {
   const { productsState, productsDispatch } = useProducts()
-  const { getData: getProductsData, isLoading } = useAxios("/api/productList")
+  const { getData: getProductsData, isLoading } = useAxios('/api/productList')
   useEffect(() => {
     ;(async () => {
       if (productsState.products.length === 0) {
@@ -56,21 +56,21 @@ export const ProductListing = ({ setRoute }) => {
       }
     })()
     return () => {
-      console.log("Moving out of products listing component")
+      console.log('Moving out of products listing component')
     }
   }, [])
   return (
     <>
-      <div className="page__title">Product Listing</div>
+      <div className='page__title'>Product Listing</div>
       {isLoading ? (
-        <div className="page__loader"></div>
+        <div className='page__loader'></div>
       ) : (
-        <div className="container">
-          <div className="sidenav-container">
+        <div className='container'>
+          <div className='sidenav-container'>
             <Filter />
           </div>
-          <div className="component-container">
-            <div className="product__container">
+          <div className='component-container'>
+            <div className='product__container'>
               <React.Fragment>
                 {tranformProducts(productsState).map(
                   ({ id, inStock, ...rest }) => (
@@ -80,8 +80,6 @@ export const ProductListing = ({ setRoute }) => {
                       <CardFooter>
                         {inStock && (
                           <AddToCartButton
-                            setRoute={setRoute}
-                            renderPage={"ProductListing"}
                             id={id}
                             {...rest}
                             inStock={inStock}

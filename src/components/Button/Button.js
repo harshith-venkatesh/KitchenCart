@@ -1,32 +1,37 @@
-import { useData } from "../../context/dataContext"
-import { useAxios } from "../../customHooks/useAxios"
+import { useData } from '../../context/dataContext'
+import { useAxios } from '../../customHooks/useAxios'
 import {
   ADD_CARTLIST_ITEM,
   ADD_WISHLIST_ITEM,
-  REMOVE_WISHLIST_ITEM,
-} from "../../reducers/dataReducer"
-import { checkItem } from "../../utils/checkItem"
+  REMOVE_WISHLIST_ITEM
+} from '../../reducers/dataReducer'
+import { checkItem } from '../../utils/checkItem'
+import { useNavigate } from 'react-router-dom'
 
 export const CloseButton = ({ onClick }) => (
-  <div className="product__card__badge" onClick={onClick}>
-    <i className="fa fa-times"></i>
+  <div className='product__card__badge' onClick={onClick}>
+    <i className='fa fa-times'></i>
   </div>
 )
 
-export const AddToCartButton = ({ setRoute, renderPage, id, ...rest }) => {
+export const AddToCartButton = ({ id, ...rest }) => {
+  let navigate = useNavigate()
   const { cartListItems, dataDispatch } = useData()
-  const { postData, isLoading } = useAxios("/api/cartList")
+  const { postData, isLoading } = useAxios('/api/cartList')
 
   const postCartData = async () => {
     const item = await postData({ id, qty: 1, ...rest })
-    dataDispatch({
-      type: ADD_CARTLIST_ITEM,
-      item: { id, qty: 1, ...rest },
-    })
+    console.log(item)
+    if (item) {
+      dataDispatch({
+        type: ADD_CARTLIST_ITEM,
+        item: { id, qty: 1, ...rest }
+      })
+    }
   }
   const handleClick = () => {
     if (checkItem(cartListItems, id)) {
-      setRoute("Cart")
+      navigate('/cart')
     } else {
       postCartData()
     }
@@ -34,29 +39,29 @@ export const AddToCartButton = ({ setRoute, renderPage, id, ...rest }) => {
   return (
     <button
       disabled={isLoading}
-      className="btn btn-outline-primary"
+      className='btn btn-outline-primary'
       onClick={handleClick}
     >
       {isLoading
-        ? "Adding to Cart..."
+        ? 'Adding to Cart...'
         : checkItem(cartListItems, id)
-        ? "Go To Cart"
-        : "Add To Cart"}
+        ? 'Go To Cart'
+        : 'Add To Cart'}
     </button>
   )
 }
 
 const setWishListButtonClass = (wishListItems, id) => {
   return checkItem(wishListItems, id)
-    ? "product__card__badge red btn-close"
-    : "product__card__badge gray btn-close"
+    ? 'product__card__badge red btn-close'
+    : 'product__card__badge gray btn-close'
 }
 export const WishListButton = ({ id, ...rest }) => {
   const { wishListItems, dataDispatch } = useData()
   const {
     postData: postWishListData,
-    deleteData: deleteWishListData,
-  } = useAxios("/api/wishList")
+    deleteData: deleteWishListData
+  } = useAxios('/api/wishList')
   const handleClick = () => {
     if (checkItem(wishListItems, id)) {
       ;(async () => {
@@ -64,7 +69,7 @@ export const WishListButton = ({ id, ...rest }) => {
         if (deleteSuccess) {
           dataDispatch({
             type: REMOVE_WISHLIST_ITEM,
-            id,
+            id
           })
         }
       })()
@@ -73,7 +78,7 @@ export const WishListButton = ({ id, ...rest }) => {
         const item = await postWishListData({ id, ...rest })
         dataDispatch({
           type: ADD_WISHLIST_ITEM,
-          item: { id, ...rest },
+          item: { id, ...rest }
         })
       })()
     }
@@ -84,7 +89,7 @@ export const WishListButton = ({ id, ...rest }) => {
       className={setWishListButtonClass(wishListItems, id)}
       onClick={handleClick}
     >
-      <i className="fa fa-heart"></i>
+      <i className='fa fa-heart'></i>
     </div>
   )
 }
