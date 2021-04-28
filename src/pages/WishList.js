@@ -62,7 +62,7 @@ export const WishList = () => {
               {wishListItems.map(({ id, ...rest }) => (
                 <Card key={id}>
                   <CloseButton onClick={() => deleteWishListItem(id)} />
-                  <CardBody {...rest} />
+                  <CardBody id={id} {...rest} />
                   <CardFooter>
                     <AddToCartButton id={id} {...rest} />
                   </CardFooter>

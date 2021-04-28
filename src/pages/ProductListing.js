@@ -90,8 +90,7 @@ export const ProductListing = () => {
               <React.Fragment>
                 {filteredProducts.map(({ id, inStock, ...rest }) => (
                   <Card key={id}>
-                    <WishListButton id={id} inStock={inStock} {...rest} />
-                    <CardBody inStock={inStock} {...rest} />
+                    <CardBody id={id} inStock={inStock} {...rest} />
                     <CardFooter>
                       {inStock && (
                         <AddToCartButton id={id} {...rest} inStock={inStock} />

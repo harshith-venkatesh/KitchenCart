@@ -54,7 +54,7 @@ export const AddToCartButton = ({ id, ...rest }) => {
 const setWishListButtonClass = (wishListItems, id) => {
   return checkItem(wishListItems, id)
     ? 'product__card__badge red btn-close'
-    : 'product__card__badge gray btn-close'
+    : 'product__card__badge white btn-close'
 }
 export const WishListButton = ({ id, ...rest }) => {
   const { wishListItems, dataDispatch } = useData()

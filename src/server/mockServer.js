@@ -20,6 +20,12 @@ function getItem() {
     price() {
       return faker.commerce.price()
     },
+    rating() {
+      return faker.random.number({
+        min: 0,
+        max: 5,
+      })
+    },
     inStock() {
       return faker.random.boolean()
     },

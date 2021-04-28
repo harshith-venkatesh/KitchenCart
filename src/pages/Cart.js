@@ -102,7 +102,7 @@ export const Cart = () => {
             <div className='cart__container__listing'>
               {cartListItems.map(({ id, qty, ...rest }) => (
                 <Card key={id}>
-                  <CardBody {...rest} />
+                  <CardBody id={id} {...rest} />
                   <div className='cart__container__action'>
                     <button
                       className='btn'
