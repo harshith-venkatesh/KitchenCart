@@ -14,9 +14,12 @@ export default function App() {
       <ToastContainer />
       <div className='ecomm__container'>
         <Routes>
+        <Route path='/' element={<ProductListing />} />
           <Route path='/products' element={<ProductListing />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/wishList' element={<WishList />} />
+          <Route path="*" element={<ProductListing />} />
+
         </Routes>
       </div>
     </>
