@@ -46,7 +46,7 @@ body {
 
 .product__card__badge {
 	position: absolute;
-	right: 0.2rem;
+	right: 0.4rem;
 	top: 0.2rem;
 	padding: 0.5rem;
 	background: rgba(0,0,0,0.5);
@@ -278,7 +278,7 @@ body {
 .product__card__rating--placement {
 	position: absolute;
 	bottom: 1rem;
-	right: 1rem;
+	right: 0.4rem;
 	z-index:2;
 }
 .product__card__rating{
