@@ -1,3 +1,4 @@
+import { Link, NavLink } from 'react-router-dom'
 import { WishListButton } from '../Button/Button'
 
 export const Card = ({ children }) => (
@@ -31,6 +32,7 @@ export const CardBody = ({ id, inStock, image, rating, ...rest }) => (
 )
 
 export const CardDetails = ({
+  id,
   name,
   price,
   rating,
@@ -38,11 +40,13 @@ export const CardDetails = ({
   inStock,
   fastDelivery
 }) => (
-  <div className='p-1'>
-    <h4>{name}</h4>
-    <p>Rs. {price}</p>
-    <div>{idealFor}</div>
-    {inStock ? <div>In Stock</div> : <div> Out of Stock</div>}
-    {fastDelivery ? <div>Fast Delivery</div> : <div>Delivery in 2 days</div>}
-  </div>
+  <NavLink to={`/products/${id}`} className='navLink--product'>
+    <div className='p-1'>
+      <h4>{name}</h4>
+      <p>Rs. {price}</p>
+      <div>{idealFor}</div>
+      {inStock ? <div>In Stock</div> : <div> Out of Stock</div>}
+      {fastDelivery ? <div>Fast Delivery</div> : <div>Delivery in 2 days</div>}
+    </div>
+  </NavLink>
 )

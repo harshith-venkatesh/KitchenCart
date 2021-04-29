@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NavBar } from './components'
-import { Cart, Home, ProductListing, WishList } from './pages'
+import { Cart, Home, ProductListing, WishList, ProductDetail } from './pages'
 import { ToastContainer } from 'react-toastify'
 import './styles.css'
 import { Routes, Route } from 'react-router-dom'
@@ -14,12 +14,12 @@ export default function App() {
       <ToastContainer />
       <div className='ecomm__container'>
         <Routes>
-        <Route path='/' element={<ProductListing />} />
+          <Route path='/' element={<ProductListing />} />
           <Route path='/products' element={<ProductListing />} />
+          <Route path='/products/:productId' element={<ProductDetail />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/wishList' element={<WishList />} />
-          <Route path="*" element={<ProductListing />} />
-
+          <Route path='*' element={<ProductListing />} />
         </Routes>
       </div>
     </>

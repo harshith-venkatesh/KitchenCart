@@ -89,6 +89,21 @@ body {
 	color: white;
 }
 
+.navLink--product {
+	text-decoration: none;
+	color: black;
+}
+
+.navLink--product:focus,
+.navLink--product:hover,
+.navLink--product:visited,
+.navLink--product:link,
+.navLink--product:active {
+	text-decoration: none;
+	color: black;
+}
+
+
 .icons__container {
 	display: flex;
 	margin-top: 1rem;
@@ -115,8 +130,8 @@ body {
 	padding: 0 2rem;
 }
 
-.gray {
-	color: gray;
+.white {
+	color: rgb(226, 215, 215);
 }
 
 .page__loader {
