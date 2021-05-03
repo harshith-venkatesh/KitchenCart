@@ -3,14 +3,14 @@ Link: [Music Cart] (http://kitchencart.netlify.app/)
 Until Now features covered:
 
 Check list for current Project
--[X] Product Rendering
--[X] Wishlist 
--[X] Add To Cart
--[X] Search for Products
--[X] Filtering Products
--[X] Data Fetch using mock server (Miraje JS)
--[X] Individual Page details
--[X] Routing
--[ ] Individual Page CSS changes
--[ ] Authentication
--[ ] Backend Integration
+- [X] Product Rendering
+- [X] Wishlist 
+- [X] Add To Cart
+- [X] Search for Products
+- [X] Filtering Products
+- [X] Data Fetch using mock server (Miraje JS)
+- [X] Individual Page details
+- [X] Routing
+- [ ] Individual Page CSS changes
+- [ ] Authentication
+- [ ] Backend Integration
