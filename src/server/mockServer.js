@@ -1,5 +1,5 @@
-import { createServer, Factory, Model } from "miragejs"
-import faker from "faker"
+import { createServer, Factory, Model } from 'miragejs'
+import faker, { random } from 'faker'
 
 faker.seed(123)
 
@@ -8,7 +8,7 @@ function getItem() {
     id() {
       return faker.random.number({
         min: 0,
-        max: 50,
+        max: 50
       })
     },
     name() {
@@ -22,8 +22,8 @@ function getItem() {
     },
     rating() {
       return faker.random.number({
-        min: 0,
-        max: 5,
+        min: 2,
+        max: 5
       })
     },
     inStock() {
@@ -32,56 +32,59 @@ function getItem() {
     fastDelivery() {
       return faker.random.boolean()
     },
+    category() {
+      return random.arrayElement(['String Instruments', 'Air Instruments'])
+    }
   })
 }
 
-export function makeServer({ environment = "development" } = {}) {
+export function makeServer({ environment = 'development' } = {}) {
   createServer({
     environment,
     models: {
       wishListItem: Model,
       cartListItem: Model,
-      productListItem: Model,
+      productListItem: Model
     },
     factories: {
       wishListItem: getItem(),
       cartListItem: getItem(),
-      productListItem: getItem(),
+      productListItem: getItem()
     },
     seeds(server) {
-      server.createList("productListItem", 100)
+      server.createList('productListItem', 100)
     },
     routes() {
-      this.namespace = "api"
+      this.namespace = 'api'
       this.timing = 2000
 
-      this.get("/wishList", (schema, request) => {
+      this.get('/wishList', (schema, request) => {
         let attrs = JSON.parse(request.requestBody)
 
         return schema.wishListItems.create({ ...attrs })
       })
-      this.post("/wishList", (schema, request) => {
+      this.post('/wishList', (schema, request) => {
         let attrs = JSON.parse(request.requestBody)
         return schema.wishListItems.create({ ...attrs })
       })
-      this.delete("/wishList/:id", (schema, request) => {
+      this.delete('/wishList/:id', (schema, request) => {
         let id = request.params.id
         return schema.wishListItems.find(id).destroy()
       })
-      this.get("/cartList", (schema) => {
+      this.get('/cartList', (schema) => {
         return schema.cartListItems.all()
       })
-      this.post("/cartList", (schema, request) => {
+      this.post('/cartList', (schema, request) => {
         let attrs = JSON.parse(request.requestBody)
         return schema.cartListItems.create(attrs)
       })
-      this.delete("/cartList/:id", (schema, request) => {
+      this.delete('/cartList/:id', (schema, request) => {
         let id = request.params.id
         return schema.cartListItems.find(id).destroy()
       })
-      this.get("/productList", (schema) => {
+      this.get('/productList', (schema) => {
         return schema.productListItems.all()
       })
-    },
+    }
   })
 }

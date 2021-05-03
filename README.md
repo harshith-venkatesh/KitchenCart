@@ -1,2 +1,1 @@
-# KitchenCart
-Created with CodeSandbox
+ECommerce application for music enthusiasts to check for
