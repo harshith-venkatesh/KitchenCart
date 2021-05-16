@@ -25,7 +25,8 @@ export const useAxios = (url) => {
   async function getData() {
     return requestAPI(async () => {
       const response = await axios.get(url)
-      return response.data[`${getRegion(url)}Items`]
+      console.log(response)
+      return response.data
     })
   }
 
@@ -33,7 +34,7 @@ export const useAxios = (url) => {
     return requestAPI(async () => {
       const response = await axios.post(url, newItem)
       console.log(response)
-      return response.data[`${getRegion(url)}Item`]
+      return response.data
     }, `${newItem.name} added to your ${getRegion(url)}`)
   }
 

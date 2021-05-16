@@ -9,6 +9,7 @@ import {
 } from '../reducers/dataReducer'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardBody } from '../components'
+import { CART_URL } from '../congif/baseUrls'
 const getTotalPrice = (items) => {
   return items.reduce(
     (amount, { inStock, price, qty }) => amount + price * qty * inStock,
@@ -18,20 +19,10 @@ const getTotalPrice = (items) => {
 export const Cart = () => {
   let navigate = useNavigate()
   const { cartListItems, dataDispatch } = useData()
-  const { getData: getCartData, isLoading } = useAxios('/api/cartList')
   const {
     deleteData: deleteCartData,
     isLoading: isDeleteDataLoading
-  } = useAxios('/api/cartList')
-
-  useEffect(() => {
-    ;(async () => {
-      if (cartListItems.length === 0) {
-        const fetchCartItems = await getCartData()
-        dataDispatch({ type: SET_CARTLIST_ITEMS, fetchCartItems })
-      }
-    })()
-  }, [])
+  } = useAxios(CART_URL)
 
   const deleteCartItem = async (id) => {
     const success = await deleteCartData(id)
@@ -80,9 +71,7 @@ export const Cart = () => {
   return (
     <React.Fragment>
       <div className='page__title'>My Cart</div>
-      {isLoading ? (
-        <div className='page__loader'></div>
-      ) : (
+      {
         <>
           {cartListItems.length === 0 && (
             <div className='empty__data__area'>
@@ -135,7 +124,7 @@ export const Cart = () => {
             <div className='cart__container__billing'>{invoiceGenerator()}</div>
           </div>
         </>
-      )}
+      }
     </React.Fragment>
   )
 }

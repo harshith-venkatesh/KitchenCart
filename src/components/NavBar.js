@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import { CART_URL, WISHLIST_URL } from '../congif/baseUrls'
 import { useData } from '../context/dataContext'
+import { useAxios } from '../customHooks/useAxios'
+import { SET_CARTLIST_ITEMS, SET_WISHLIST_ITEMS } from '../reducers/dataReducer'
 import { SearchCard } from './SearchCard'
 
 export const NavBar = () => {
-  const { cartListItems, wishListItems } = useData()
+  const { cartListItems, wishListItems, dataDispatch } = useData()
+  const { getData: getCartData } = useAxios(CART_URL)
+  const { getData: getWishListData } = useAxios(WISHLIST_URL)
+  useEffect(() => {
+    ;(async () => {
+      if (cartListItems.length === 0) {
+        const { cartListItems } = await getCartData()
+        console.log({ cartListItems })
+        dataDispatch({ type: SET_CARTLIST_ITEMS, fetchCartList: cartListItems })
+      }
+      if (wishListItems.length === 0) {
+        const { wishListItems } = await getWishListData()
+        console.log({ wishListItems })
+        dataDispatch({
+          type: SET_WISHLIST_ITEMS,
+          fetchWishList: wishListItems
+        })
+      }
+    })()
+  }, [])
   return (
     <React.Fragment>
       <nav className='navbar-container pr--two'>

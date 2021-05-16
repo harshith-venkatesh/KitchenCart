@@ -17,6 +17,7 @@ import {
   WishListButton
 } from '../components'
 import { useAxios } from '../customHooks/useAxios'
+import { PRODUCT_URL } from '../congif/baseUrls'
 
 const getSortedData = (state, data) => {
   const sortCheck = state[SORT_BY_PRICE]
@@ -52,13 +53,17 @@ export const ProductListing = () => {
   const { productsState, productsDispatch } = useProducts()
   const sortedData = getSortedData(productsState, productsState.products)
   const filteredProducts = getFilteredData(productsState, sortedData)
-  const { getData: getProductsData, isLoading } = useAxios('/api/productList')
+  const { getData: getProductsData, isLoading } = useAxios(PRODUCT_URL)
   const [sideNav, setSideNav] = useState(false)
   useEffect(() => {
     ;(async () => {
-      if (productsState.products.length === 0) {
-        const products = await getProductsData()
-        productsDispatch({ type: SET_PRODUCTS, products })
+      try {
+        if (productsState.products.length === 0) {
+          const { products } = await getProductsData()
+          productsDispatch({ type: SET_PRODUCTS, products })
+        }
+      } catch (error) {
+        errorToast('Unable to fetch the products! Try Again SomeTimes')
       }
     })()
     return () => {
@@ -88,16 +93,22 @@ export const ProductListing = () => {
           <div className='component-container'>
             <div className='product__container'>
               <React.Fragment>
-                {filteredProducts.map(({ id, inStock, ...rest }) => (
-                  <Card key={id}>
-                    <CardBody id={id} inStock={inStock} {...rest} />
-                    <CardFooter>
-                      {inStock && (
-                        <AddToCartButton id={id} {...rest} inStock={inStock} />
-                      )}
-                    </CardFooter>
-                  </Card>
-                ))}
+                {filteredProducts.length === 0 && <div>No Products Found</div>}
+                {filteredProducts.length !== 0 &&
+                  filteredProducts.map(({ _id, inStock, ...rest }) => (
+                    <Card key={_id}>
+                      <CardBody id={_id} inStock={inStock} {...rest} />
+                      <CardFooter>
+                        {inStock && (
+                          <AddToCartButton
+                            id={_id}
+                            {...rest}
+                            inStock={inStock}
+                          />
+                        )}
+                      </CardFooter>
+                    </Card>
+                  ))}
               </React.Fragment>
             </div>
           </div>

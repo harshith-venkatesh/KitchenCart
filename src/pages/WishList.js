@@ -11,22 +11,14 @@ import {
   CardFooter,
   CloseButton
 } from '../components'
+import { WISHLIST_URL } from '../congif/baseUrls'
 export const WishList = () => {
   let navigate = useNavigate()
   const { wishListItems, dataDispatch } = useData()
-  const { getData: getWishListData, isLoading } = useAxios('/api/wishList')
   const {
     deleteData: deleteWishListData,
     isLoading: deleteWishListLoading
-  } = useAxios('/api/wishList')
-  useEffect(() => {
-    ;(async () => {
-      if (wishListItems.length === 0) {
-        const fetchWishListData = await getWishListData()
-        dataDispatch({ type: SET_WISHLIST_ITEMS, fetchWishListData })
-      }
-    })()
-  }, [])
+  } = useAxios(WISHLIST_URL)
 
   const deleteWishListItem = (id) => {
     ;(async () => {
@@ -39,9 +31,7 @@ export const WishList = () => {
   return (
     <React.Fragment>
       <div className='page__title'>My WishList</div>
-      {isLoading ? (
-        <div className='page__loader'></div>
-      ) : (
+      {
         <div>
           {wishListItems.length === 0 && (
             <div className='empty__data__area'>
@@ -71,7 +61,7 @@ export const WishList = () => {
             </div>
           </div>
         </div>
-      )}
+      }
     </React.Fragment>
   )
 }
