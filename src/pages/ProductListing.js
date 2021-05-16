@@ -51,9 +51,10 @@ const getFilteredData = (state, data) => {
 
 export const ProductListing = () => {
   const { productsState, productsDispatch } = useProducts()
+  const { getData: getProductsData, isLoading } = useAxios(PRODUCT_URL)
   const sortedData = getSortedData(productsState, productsState.products)
   const filteredProducts = getFilteredData(productsState, sortedData)
-  const { getData: getProductsData, isLoading } = useAxios(PRODUCT_URL)
+
   const [sideNav, setSideNav] = useState(false)
   useEffect(() => {
     ;(async () => {
@@ -82,37 +83,29 @@ export const ProductListing = () => {
       {isLoading ? (
         <div className='page__loader'></div>
       ) : (
-        <div className='container'>
-          <div className='sidenav-container'>
-            <div
-              className={sideNav === true ? 'sideBarMenuActive' : 'sidebarMenu'}
-            >
-              <Filter />
-            </div>
+        <>
+          <div
+            className={sideNav === true ? 'sideBarMenuActive' : 'sidebarMenu'}
+          >
+            <Filter />
           </div>
-          <div className='component-container'>
-            <div className='product__container'>
-              <React.Fragment>
-                {filteredProducts.length === 0 && <div>No Products Found</div>}
-                {filteredProducts.length !== 0 &&
-                  filteredProducts.map(({ _id, inStock, ...rest }) => (
-                    <Card key={_id}>
-                      <CardBody id={_id} inStock={inStock} {...rest} />
-                      <CardFooter>
-                        {inStock && (
-                          <AddToCartButton
-                            id={_id}
-                            {...rest}
-                            inStock={inStock}
-                          />
-                        )}
-                      </CardFooter>
-                    </Card>
-                  ))}
-              </React.Fragment>
-            </div>
+          <div className='product__container'>
+            <React.Fragment>
+              {filteredProducts.length === 0 && <div>No Products Found</div>}
+              {filteredProducts.length !== 0 &&
+                filteredProducts.map(({ _id, inStock, ...rest }) => (
+                  <Card key={_id}>
+                    <CardBody id={_id} inStock={inStock} {...rest} />
+                    <CardFooter>
+                      {inStock && (
+                        <AddToCartButton id={_id} {...rest} inStock={inStock} />
+                      )}
+                    </CardFooter>
+                  </Card>
+                ))}
+            </React.Fragment>
           </div>
-        </div>
+        </>
       )}
     </>
   )

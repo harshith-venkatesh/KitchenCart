@@ -42,11 +42,19 @@ export const AddToCartButton = ({ id, ...rest }) => {
         checkItem(cartListItems, id) ? navigate('/cart') : postCartData()
       }
     >
-      {isLoading
-        ? 'Adding to Cart...'
-        : checkItem(cartListItems, id)
-        ? 'Go To Cart'
-        : 'Add To Cart'}
+      {isLoading ? (
+        <>
+          <i className='fa fa-spinner gray'></i> Adding To Cart
+        </>
+      ) : checkItem(cartListItems, id) ? (
+        <>
+          <i className='fa fa-shopping-cart'></i> Go To Cart
+        </>
+      ) : (
+        <>
+          <i className='fa fa-cart-plus'></i> Add To Cart
+        </>
+      )}
     </button>
   )
 }
@@ -86,18 +94,26 @@ export const WishListButton = ({ id, route, ...rest }) => {
   }
 
   return (
-    <div>
+    <>
       {route === 'product' ? (
         <button
           disabled={isLoading}
           className='btn btn-outline-primary'
           onClick={handleClick}
         >
-          {isLoading
-            ? 'Adding to WishList...'
-            : checkItem(wishListItems, id)
-            ? 'Go To WishList'
-            : 'Add To WishList'}
+          {isLoading ? (
+            <>
+              <i className='fa fa-spinner gray'></i> WishList
+            </>
+          ) : checkItem(wishListItems, id) ? (
+            <>
+              <i className='fa fa-heart red'></i> WishList
+            </>
+          ) : (
+            <>
+              <i className='fa fa-heart gray'></i> WishList
+            </>
+          )}
         </button>
       ) : (
         <div
@@ -107,6 +123,6 @@ export const WishListButton = ({ id, route, ...rest }) => {
           <i className='fa fa-heart'></i>
         </div>
       )}
-    </div>
+    </>
   )
 }

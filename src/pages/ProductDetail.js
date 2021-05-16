@@ -14,6 +14,8 @@ export const ProductDetail = () => {
   const product = productsState.products.find(
     (product) => product._id === productId
   )
+  const getFinalPrice = (price, discount) =>
+    Number(price) - 0.01 * Number(discount) * Number(price)
   const cardBuild = (product) => {
     const ID = product._id
     const {
@@ -22,6 +24,7 @@ export const ProductDetail = () => {
       price,
       offer,
       rating,
+      discount,
       idealFor,
       inStock,
       fastDelivery,
@@ -42,8 +45,18 @@ export const ProductDetail = () => {
           </div>
           <div className='single__product__right__container'>
             <div className='single__product__title'>{name}</div>
-            <div className='single__product__price'>{price}</div>
+            <div className='single__product__price'>
+              <span className='final-price'>
+                Rs. {getFinalPrice(price, discount)}
+              </span>
+              <span className='price'>Rs. {price}</span>
+
+              <span className='discount-price'>({discount}% OFF)</span>
+            </div>
             <div className='single__product__description'>{offer}</div>
+            <div className='single__product__category'>
+              Category: {category}
+            </div>
             <div className='product__card__rating'>
               <span>{rating}</span>
               <span>
@@ -64,7 +77,9 @@ export const ProductDetail = () => {
       {product ? (
         <>
           <NavLink to='/products' className='navLink'>
-            <button>Go Back</button>
+            <button className='btn btn-outline-primary'>
+              <i className='fa fa-arrow-left'></i> Go Back
+            </button>
           </NavLink>
           {cardBuild(product)}
         </>

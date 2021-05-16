@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { errorToast, successToast } from '../components/Toast'
 
-const getRegion = (url) => url.split('/')[2]
+const getRegion = (url) => url.split('/')[1]
 
 export const useAxios = (url) => {
   const [isLoading, setIsLoading] = useState(false)
