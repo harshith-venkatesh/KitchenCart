@@ -438,6 +438,40 @@ body {
 	font-size: 6rem;
 }
 
+.login__form{
+	display: flex;
+	flex-direction: column;
+	max-width: 30rem;
+	width: 100%;
+	margin: 5rem auto;
+	padding: 2rem 2rem;
+	justify-content: center;
+	justify-items: center;
+	background-color: rgb(194, 223, 231);
+	border: 2px 2px 4px 4px #bbb;
+	border-radius: 5px;
+}
+
+.login__form__heading{
+	color:var(--primary-color);
+	text-align: center;
+}
+
+.login__form__body{
+	text-align: center;
+}
+
+.form__field{
+	width: 100%;
+	padding: 2rem;
+	margin:0.5rem auto;
+	display: inline-block;
+	border:none;
+	background-color: #f1f1f1;
+}
+
+
+
 
 @media (max-width: 600px) {
 	.ecomm__container {

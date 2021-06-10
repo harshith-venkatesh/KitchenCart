@@ -4,8 +4,11 @@ import { Cart, Home, ProductListing, WishList, ProductDetail } from './pages'
 import { ToastContainer } from 'react-toastify'
 import './styles.css'
 import { Routes, Route } from 'react-router-dom'
+import { Login } from './pages/Login'
+import { SignUp } from './pages/SignUp'
 
 export default function App() {
+  const login = false
   return (
     <>
       <div className='navbar sticky'>
@@ -17,8 +20,10 @@ export default function App() {
           <Route path='/' element={<ProductListing />} />
           <Route path='/products' element={<ProductListing />} />
           <Route path='/products/:productId' element={<ProductDetail />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/wishList' element={<WishList />} />
+          {login && <Route path='/cart' element={<Cart />} />}
+          {login && <Route path='/wishList' element={<WishList />} />}
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<SignUp />} />
           <Route path='*' element={<ProductListing />} />
         </Routes>
       </div>

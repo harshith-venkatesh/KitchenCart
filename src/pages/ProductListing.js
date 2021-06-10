@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useProducts } from '../context/productContext'
-import {
-  INCLUDE_OUT_OF_STOCK,
-  ONLY_FAST_DELIVERY,
-  PRICE_HIGH_TO_LOW,
-  SET_PRODUCTS,
-  SORT_BY_PRICE
-} from '../reducers/productReducer'
+import { SET_PRODUCTS } from '../reducers/productReducer'
 
 import {
   AddToCartButton,
@@ -18,36 +12,7 @@ import {
 } from '../components'
 import { useAxios } from '../customHooks/useAxios'
 import { PRODUCT_URL } from '../congif/baseUrls'
-
-const getSortedData = (state, data) => {
-  const sortCheck = state[SORT_BY_PRICE]
-  console.log(sortCheck, data)
-  if (sortCheck) {
-    data = [...data].sort((a, b) =>
-      sortCheck === PRICE_HIGH_TO_LOW ? b.price - a.price : a.price - b.price
-    )
-    console.log(data)
-  }
-  return data
-}
-
-const getFilteredData = (state, data) => {
-  if (state.searchParam.length !== 0) {
-    data = [...data].filter((product) =>
-      product.name.toLowerCase().includes(state.searchParam)
-    )
-  }
-  if (!state[INCLUDE_OUT_OF_STOCK]) {
-    data = [...data].filter((product) => product.inStock)
-  }
-  if (state[ONLY_FAST_DELIVERY]) {
-    data = [...data].filter((product) => product.fastDelivery)
-  }
-  data = [...data].filter((product) => {
-    return product.price < state.priceRange
-  })
-  return data
-}
+import { getFilteredData, getSortedData } from '../utils/swaraCart.service'
 
 export const ProductListing = () => {
   const { productsState, productsDispatch } = useProducts()
