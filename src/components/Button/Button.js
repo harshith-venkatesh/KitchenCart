@@ -17,23 +17,22 @@ export const CloseButton = ({ onClick }) => (
 
 export const AddToCartButton = ({ id, ...rest }) => {
   let navigate = useNavigate()
-  console.log(id, rest)
+  
   const { cartListItems, dataDispatch } = useData()
   const { postData, isLoading } = useAxios(CART_URL)
 
   const postCartData = async () => {
     const item = await postData({ id, qty: 1, ...rest })
-    console.log({ item })
+    
     if (item !== undefined) {
-      console.log('dispatch')
+      
       dataDispatch({
         type: ADD_CARTLIST_ITEM,
         item: { id, qty: 1, ...rest }
       })
     }
   }
-  console.log(checkItem(cartListItems, id))
-  console.log(cartListItems, id)
+  
   return (
     <button
       disabled={isLoading}

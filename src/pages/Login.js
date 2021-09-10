@@ -68,7 +68,7 @@ export const Login = () => {
 
   const loginFormHandle = (e) => {
     e.preventDefault()
-    console.log(loginForm)
+    
   }
   return (
     <div className='login__form'>

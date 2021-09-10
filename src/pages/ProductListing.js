@@ -38,6 +38,7 @@ export const ProductListing = () => {
   }, [])
   return (
     <>
+    <div className='ecomm__container'>
       <div className='page__title'>
         All Products
         <i
@@ -72,6 +73,7 @@ export const ProductListing = () => {
           </div>
         </>
       )}
+      </div>
     </>
   )
 }

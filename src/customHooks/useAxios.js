@@ -2,7 +2,11 @@ import axios from 'axios'
 import { useState } from 'react'
 import { errorToast, successToast } from '../components/Toast'
 
-const getRegion = (url) => url.split('/')[1]
+const getRegion = (url) => {
+  console.log(url.split('/'))
+  return url.split('/').pop()
+}
+
 
 export const useAxios = (url) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -25,7 +29,7 @@ export const useAxios = (url) => {
   async function getData() {
     return requestAPI(async () => {
       const response = await axios.get(url)
-      console.log(response)
+      
       return response.data
     })
   }
@@ -33,7 +37,7 @@ export const useAxios = (url) => {
   async function postData(newItem) {
     return requestAPI(async () => {
       const response = await axios.post(url, newItem)
-      console.log(response)
+      
       return response.data
     }, `${newItem.name} added to your ${getRegion(url)}`)
   }

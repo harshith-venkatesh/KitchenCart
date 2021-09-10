@@ -39,7 +39,7 @@ export const SearchCard = () => {
             </div>
           )}
         </div>
-        <button className="btn--search" onClick={searchProducts}>
+        <button aria-label="Search Products" className="btn--search" onClick={searchProducts}>
           <i className="fa fa-search"></i>
         </button>
       </div>

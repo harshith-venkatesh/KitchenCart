@@ -25,13 +25,11 @@ export const ProductDetail = () => {
       offer,
       rating,
       discount,
-      idealFor,
-      inStock,
-      fastDelivery,
       category
     } = product
     return (
       <>
+      
         <div className='single__product__main__container'>
           <div className='single__product__left__container'>
             <div className='single__product__left__container_main_image'>

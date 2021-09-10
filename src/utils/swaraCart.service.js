@@ -7,12 +7,12 @@ import {
 
 export const getSortedData = (state, data) => {
   const sortCheck = state[SORT_BY_PRICE]
-  console.log(sortCheck, data)
+  
   if (sortCheck) {
     data = [...data].sort((a, b) =>
       sortCheck === PRICE_HIGH_TO_LOW ? b.price - a.price : a.price - b.price
     )
-    console.log(data)
+    
   }
   return data
 }

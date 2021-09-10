@@ -18,8 +18,7 @@ export const dataReducer = (
   { type, id, item, fetchCartList, fetchWishList }
 ) => {
   const { cartListItems, wishListItems } = state
-  console.log({ state })
-  console.log({ fetchCartList })
+
   switch (type) {
     case SET_CARTLIST_ITEMS:
       return {

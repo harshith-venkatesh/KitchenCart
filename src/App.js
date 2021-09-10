@@ -8,25 +8,27 @@ import { Login } from './pages/Login'
 import { SignUp } from './pages/SignUp'
 
 export default function App() {
-  const login = false
+  const login = true
   return (
     <>
       <div className='navbar sticky'>
         <NavBar />
       </div>
       <ToastContainer />
-      <div className='ecomm__container'>
+      
         <Routes>
-          <Route path='/' element={<ProductListing />} />
-          <Route path='/products' element={<ProductListing />} />
-          <Route path='/products/:productId' element={<ProductDetail />} />
-          {login && <Route path='/cart' element={<Cart />} />}
-          {login && <Route path='/wishList' element={<WishList />} />}
+          <Route path='/' element={<Home />} />
+          
+            <Route path='/products' element={<ProductListing />} />
+            <Route path='/products/:productId' element={<ProductDetail />} />
+            {login && <Route path='/cart' element={<Cart />} />}
+            {login && <Route path='/wishList' element={<WishList />} />}
+          
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
-          <Route path='*' element={<ProductListing />} />
+          <Route path='*' element={<Home />} />
         </Routes>
-      </div>
+      
     </>
   )
 }
