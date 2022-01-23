@@ -1,0 +1,12 @@
+.home__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image:url('../../assets/home-background.jpg') ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    animation: gradient 15s ease infinite;
+}
+
